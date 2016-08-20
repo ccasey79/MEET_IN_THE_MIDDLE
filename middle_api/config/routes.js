@@ -21,7 +21,15 @@ function secureRoute(req, res, next){
 }
 
 router.route('/users')
-  .get(usersController.index)
+  .get(usersController.index);
 
+router.route("/users/:id")
+  .get(usersController.show)
+  .post(usersController.update)
+  .patch(usersController.update)
+  .delete(usersController.delete);
+
+router.post("/register", authController.register);
+router.post("/login", authController.login);
 
 module.exports = router;
