@@ -1,0 +1,21 @@
+{
+  "name": "middle_app",
+  "homepage": "https://github.com/ccasey79/MEET_IN_THE_MIDDLE",
+  "authors": [
+    "Jason Lai <jase_lai@hotmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "underscore": "^1.8.3"
+  }
+}
