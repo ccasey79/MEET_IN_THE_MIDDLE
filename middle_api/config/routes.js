@@ -2,6 +2,7 @@ var router = require('express').Router();
 
 var usersController = require('../controllers/users');
 var authController = require("../controllers/authentications");
+var friendsController = require('../controllers/friends');
 
 //require json web token stuff
 var secret = require("../config/tokens").secret;

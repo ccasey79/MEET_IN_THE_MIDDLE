@@ -5,7 +5,8 @@ var userSchema = new mongoose.Schema({
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
   email: { type: String, required: true, unique: true },
-  passwordHash: { type: String, required: true }
+  passwordHash: { type: String, required: true },
+  friends: [{ type: mongoose.Schema.ObjectId, ref: 'User' }]
 });
 
 userSchema.set('toJSON', {
