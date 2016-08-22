@@ -1,0 +1,14 @@
+<h1>USERS</h1>
+
+<ul class="list-group">
+  <% users.forEach(function(user) { %>
+    <a id="test" href="#" class="show-user" data-id="<%= user._id%>">
+      <li class="list-group-item">
+        <h4><%= user.firstName %></h4>
+        <h5><%= user.lastName %></h5>
+      <h5><%= user.email %></h5>
+      </li>
+    </a>
+    <% }) %>
+</ul>
+
