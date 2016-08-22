@@ -9,6 +9,7 @@ gMaps.map = new google.maps.Map(document.getElementById("map"), {
 });
 
 gMaps.markers = [];
+gMaps.placeDetails;
 
 gMaps.getUserLocation = function(){
 
@@ -95,30 +96,89 @@ gMaps.centerMap = function(latLng) {
 
 gMaps.getCenterOfMarkers = function() {
 
-  if(gMaps.markers.length === 0) {
+  if(this.markers.length === 0) {
     return centralMarker.setMap(null);
   }
 
   var bounds = new google.maps.LatLngBounds();
 
-  gMaps.markers.forEach(function(marker) {
+  this.markers.forEach(function(marker) {
     bounds.extend(marker.getPosition());
   });
 
-  var centerPoint = bounds.getCenter();
-  this.centerMap(centerPoint);
+  this.centerPoint = bounds.getCenter();
+
+  this.centerMap(this.centerPoint);
   this.centralMarker.setMap(this.map);
-  this.centralMarker.setPosition(centerPoint);
+  this.centralMarker.setPosition(this.centerPoint);
   this.map.fitBounds(bounds);
-  this.centralMarker.addListener("click", function(){
-    this.map.setZoom(18);
+  this.centralMarker.addListener("click", function(e){
+    gMaps.map.setZoom(18);
+    gMaps.getPlaces();
   });
+
 }
 
 gMaps.initEventHandlers = function() {
   document.getElementById('findCenterButton').addEventListener("click", function(){
     gMaps.getCenterOfMarkers();
   });
+}
+
+
+gMaps.service = new google.maps.places.PlacesService(gMaps.map);
+
+gMaps.getPlaces = function() {
+  var request = {
+    location: gMaps.centerPoint,
+    radius: 200,
+    type: ["bar"]
+  }
+
+  this.service.nearbySearch(request, this.createPlaceMarkers);
+}
+
+gMaps.createPlaceMarkers = function (results, status) {
+  if (status == google.maps.places.PlacesServiceStatus.OK) {
+    results.forEach(gMaps.createMarker);
+
+    // console.log(results);
+  }
+}
+
+gMaps.createMarker = function(place){
+
+  var placeMarker = new google.maps.Marker({
+    map: gMaps.map,
+    icon: "http://maps.google.com/mapfiles/ms/icons/red-dot.png",
+    title: place.name,
+    position: place.geometry.location,
+    animation: google.maps.Animation.DROP,
+  });
+  
+  google.maps.event.addListener(placeMarker, "click", function(){
+
+    infowindow = new google.maps.InfoWindow();
+    
+    var photo = "";
+
+    if(!!place.photos) {
+      photo = "<img src='" + place.photos[0].getUrl({ 'maxWidth': 150, 'maxHeight': 150 }) +"'>";
+    }
+
+  placeDetails = gMaps.service.getDetails({placeId: place.place_id}, function(place, status){
+      if (status === google.maps.places.PlacesServiceStatus.OK) {
+        console.log(place);
+        infowindow.setContent(place.name + "<br>" + place.adr_address + "<br>" + place.formatted_phone_number+ "<br>" + photo);
+
+        console.log("this is the place detail", place);
+      }
+    });
+
+   infowindow.open(gMaps.map, this);
+
+  });
+
 }
 
 gMaps.init = function(){
