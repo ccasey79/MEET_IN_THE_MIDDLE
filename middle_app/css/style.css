@@ -1,0 +1,77 @@
+@import 'https://fonts.googleapis.com/css?family=Roboto';
+
+
+body {
+  margin: 0 auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Roboto', sans-serif;
+  color: #95989A;
+}
+
+#home {
+   width: 100%;
+   height: 100vh;
+    background: url(../images/home_background.png) no-repeat center center; 
+   -webkit-background-size: cover;
+   -moz-background-size: cover;
+   -o-background-size: cover;
+   background-size: cover;
+ }
+ 
+ img.img-responsive {
+  margin-bottom: 1em;
+  display: block;
+ }
+
+.centered {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  z-index: 2;
+  max-width: 100%;
+  text-align: center;
+}
+
+.shader {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  background: -webkit-linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.2));
+  z-index: 1;
+}
+nav.navbar.navbar-default {
+  margin: 0;
+  background-color: #fff;
+}
+
+a.navbar-brand img{
+  height: 100%;
+}
+
+.navbar-brand {
+  padding: 0;
+}
+a.red-btn {
+  padding-top: 1em;
+  padding-bottom: 1em;
+  padding-right: 3em;
+  padding-left: 3em;
+  color: #fff;
+  background-color: #E84855;
+  display: inline-block;
+  text-align: center;
+}
+
+
+a.blue-btn {
+  padding-top: 1em;
+  padding-bottom: 1em;
+  padding-right: 3em;
+  padding-left: 3em;
+  color: #fff;
+  background-color: #2D3047;
+  display: inline-block;
+}
+
