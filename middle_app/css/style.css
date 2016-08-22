@@ -74,4 +74,47 @@ a.blue-btn {
   background-color: #2D3047;
   display: inline-block;
 }
+a.blue-button:hover {
+  background-color:#E84855;
+}
+h2.text-center {
+  text-transform: uppercase;
+  color: #2D3047;
+  font-weight: 700;
+  margin-bottom: 2em;
+}
+
+input.form-control {
+  min-width: 400px;
+  border: none;
+  border-bottom: 1px solid #1B998B;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border-radius: 0;
+
+}
+input.form-control:focus{
+    border-color: inherit;
+    border-bottom: 1px solid #2D3047;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+}
+
+
+button.red-btn {
+  padding-top: 1em;
+  padding-bottom: 1em;
+  padding-right: 3em;
+  padding-left: 3em;
+  color: #fff;
+  background-color: #E84855;
+  display: inline-block;
+  text-align: center;
+  border: none;
+  text-transform: uppercase;
+  margin-top: 6em;
+}
+button.red-btn:hover{
+  background-color: #2D3047;
+}
 
