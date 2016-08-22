@@ -127,8 +127,8 @@ MiddleApp.initEventHandlers = function() {
   this.$main.on("click", ".show-user", this.getUser);
 
   //any link in the main or outwith the main with a data-template attr, load on-click. 
-  $('a[data-template]').on('click', this.loadPage);
-  this.$main.on('click', 'a[data-template]', this.loadPage);
+  $('[data-template]').on('click', this.loadPage);
+  this.$main.on('click', '[data-template]', this.loadPage);
 
   $(".navbar-nav a.logout").on("click", this.logout);
   this.$main.on("submit", "form", this.handleForm);
