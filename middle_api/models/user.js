@@ -11,7 +11,9 @@ var userSchema = new mongoose.Schema({
 });
 
 userSchema.set('toJSON', {
+  virtuals: true,
   transform: function(doc, json){
+    delete json.profile_pic;
     delete json.passwordHash;
     return json;
   }
@@ -45,6 +47,12 @@ userSchema.path("passwordHash").validate(function(passwordHash){
     }
   }
 });
+
+userSchema.virtual("profilePicUrl")
+  .get(function() {
+    if(!this.profile_pic) return null;
+    return "https://s3-eu-west-1.amazonaws.com/" + process.env.AWS_BUCKET_NAME + "/" + this.profile_pic
+  });
 
 userSchema.methods.validatePassword = function(password){
   return bcrypt.compareSync(password, this.passwordHash);

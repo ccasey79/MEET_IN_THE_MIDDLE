@@ -41,7 +41,6 @@ function secureRoute(req, res, next){
 
   jwt.verify(token, secret, function(err, payload){
     if(err || !payload) return res.status(401).json({ message: "Unauthorized!" });
-    
     req.user = payload;
     next(); 
   });
@@ -56,7 +55,7 @@ router.route("/users/:id")
   .patch(usersController.update)
   .delete(usersController.delete);
 
-router.post("/register", upload.single('profile_pic'),authController.register);
+router.post("/register", upload.single('profile_pic'), authController.register);
 router.post("/login", authController.login);
 
 module.exports = router;
