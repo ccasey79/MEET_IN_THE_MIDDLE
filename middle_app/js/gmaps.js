@@ -2,13 +2,15 @@ console.log("JS Loaded");
 
 var gMaps = gMaps || {};
 
+gMaps.markers = [];
+gMaps.placeMarkers =[];
+
 gMaps.map = new google.maps.Map(document.getElementById("map"), { 
   center: { lat: 51.5080072, lng: -0.1019284 },
   zoom: 14,
   styles: [{"elementType":"geometry","stylers":[{"hue":"#ff4400"},{"saturation":-68},{"lightness":-4},{"gamma":0.72}]},{"featureType":"road","elementType":"labels.icon"},{"featureType":"landscape.man_made","elementType":"geometry","stylers":[{"hue":"#0077ff"},{"gamma":3.1}]},{"featureType":"water","stylers":[{"hue":"#00ccff"},{"gamma":0.44},{"saturation":-33}]},{"featureType":"poi.park","stylers":[{"hue":"#44ff00"},{"saturation":-23}]},{"featureType":"water","elementType":"labels.text.fill","stylers":[{"hue":"#007fff"},{"gamma":0.77},{"saturation":65},{"lightness":99}]},{"featureType":"water","elementType":"labels.text.stroke","stylers":[{"gamma":0.11},{"weight":5.6},{"saturation":99},{"hue":"#0091ff"},{"lightness":-86}]},{"featureType":"transit.line","elementType":"geometry","stylers":[{"lightness":-48},{"hue":"#ff5e00"},{"gamma":1.2},{"saturation":-23}]},{"featureType":"transit","elementType":"labels.text.stroke","stylers":[{"saturation":-64},{"hue":"#ff9100"},{"lightness":16},{"gamma":0.47},{"weight":2.7}]}]
 });
 
-gMaps.markers = [];
 gMaps.placeDetails;
 
 gMaps.getUserLocation = function(){
@@ -114,7 +116,6 @@ gMaps.getCenterOfMarkers = function() {
   this.map.fitBounds(bounds);
   this.centralMarker.addListener("click", function(e){
     gMaps.map.setZoom(18);
-    gMaps.getPlaces();
   });
 
 }
@@ -123,39 +124,117 @@ gMaps.initEventHandlers = function() {
   document.getElementById('findCenterButton').addEventListener("click", function(){
     gMaps.getCenterOfMarkers();
   });
+
+  document.getElementById("drinks").addEventListener("click", function(){
+    gMaps.removePlaceMarkers();
+    gMaps.placeType = ["bar"];
+    gMaps.placeQuery = "";
+    gMaps.getPlaces();
+  });
+
+  document.getElementById("restaurants").addEventListener("click", function(){
+    gMaps.removePlaceMarkers();
+    gMaps.placeType = ["restaurant"];
+    gMaps.placeQuery = "";
+    gMaps.getPlaces();
+  });
+
+  document.getElementById("cafe").addEventListener("click", function(){
+    gMaps.removePlaceMarkers();
+    gMaps.placeType = ["cafe"];
+    gMaps.placeQuery = "";
+    gMaps.getPlaces();
+  });
+
+  document.getElementById("nightClub").addEventListener("click", function(){
+    gMaps.removePlaceMarkers();
+    gMaps.placeType = ["night_club"];
+    gMaps.placeQuery = "";
+    gMaps.getPlaces();
+  });
+
+  document.getElementById("casino").addEventListener("click", function(){
+    gMaps.removePlaceMarkers();
+    gMaps.placeType = ["casino"];
+    gMaps.placeQuery = "";
+    gMaps.getPlaces();
+  });
+
+  document.getElementById("ghost").addEventListener("click", function(){
+    gMaps.removePlaceMarkers();
+    gMaps.placeType = ["funeral_home", "cemetery"];
+    gMaps.placeQuery = "";
+    gMaps.getPlaces();
+  });
+
+  document.getElementById("stiClinic").addEventListener("click", function(){
+    gMaps.removePlaceMarkers();
+    gMaps.placeType = [];
+    gMaps.placeQuery = "sti clinic";
+    gMaps.getPlaces();
+  });
+
+  document.getElementById("strip").addEventListener("click", function(){
+    gMaps.removePlaceMarkers();
+    gMaps.placeType = [];
+    gMaps.placeQuery = "strip club";
+    gMaps.getPlaces();
+  });
+
+  document.getElementById("shopping").addEventListener("click", function(){
+    gMaps.removePlaceMarkers();
+    gMaps.placeType = ["electronics_store","department_store", "jewelry_store", "book_store", "clothing_store", "shopping_mall", "shoe_store"];
+    gMaps.placeQuery = "";
+    gMaps.getPlaces();
+  });
+
 }
 
 
 gMaps.service = new google.maps.places.PlacesService(gMaps.map);
 
+gMaps.placeType = [];
+gMaps.placeQuery = "";
+
 gMaps.getPlaces = function() {
+
   var request = {
     location: gMaps.centerPoint,
-    radius: 200,
-    type: ["bar"]
+    radius: 250,
+    types: gMaps.placeType,
+    query: gMaps.placeQuery
   }
 
-  this.service.nearbySearch(request, this.createPlaceMarkers);
+  this.service.textSearch(request, this.createPlaceMarkers);
 }
 
 gMaps.createPlaceMarkers = function (results, status) {
   if (status == google.maps.places.PlacesServiceStatus.OK) {
     results.forEach(gMaps.createMarker);
-
-    // console.log(results);
   }
 }
 
 gMaps.createMarker = function(place){
 
+
+  var image = {
+     url: place.icon,
+     size: new google.maps.Size(71, 71),
+     origin: new google.maps.Point(0, 0),
+     anchor: new google.maps.Point(17, 34),
+     scaledSize: new google.maps.Size(25, 25)
+   };
+
   var placeMarker = new google.maps.Marker({
     map: gMaps.map,
-    icon: "http://maps.google.com/mapfiles/ms/icons/red-dot.png",
+    icon: image,
     title: place.name,
     position: place.geometry.location,
     animation: google.maps.Animation.DROP,
   });
   
+  gMaps.placeMarkers.push(placeMarker);
+
   google.maps.event.addListener(placeMarker, "click", function(){
 
     infowindow = new google.maps.InfoWindow();
@@ -178,7 +257,13 @@ gMaps.createMarker = function(place){
    infowindow.open(gMaps.map, this);
 
   });
+}
 
+gMaps.removePlaceMarkers = function() {
+  for (var i = 0; i < gMaps.placeMarkers.length; i++ ) {
+    gMaps.placeMarkers[i].setMap(null);
+  }
+  gMaps.placeMarkers.length = 0;
 }
 
 
@@ -190,6 +275,7 @@ gMaps.init = function(){
   this.autocompleteInput();
   this.initEventHandlers();
 }
+
 
 gMaps.init();
 
