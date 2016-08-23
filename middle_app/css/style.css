@@ -167,13 +167,18 @@ button.remove {
   margin-top: 1.5em;
 }
 
-button.directions {
+#directions {
   background-color: #E84855;
   padding-top: 0.8em;
   padding-bottom: 0.8em;
   padding-right: 2em;
   padding-left: 2em;
   color: #fff;
+}
+
+.gm-style-iw {
+  height: 500px;
+  width: 300px;
 }
 
 #drink{

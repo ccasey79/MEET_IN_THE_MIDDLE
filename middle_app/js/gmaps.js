@@ -295,7 +295,10 @@ gMaps.createPlaceMarker = function(place){
       if (status === google.maps.places.PlacesServiceStatus.OK) {
         stars = gMaps.starRating(place.rating);
 
-        infowindow.setContent(place.name + "<br>" + place.adr_address + "<br>" + place.formatted_phone_number+ "<br>" + photo + "<br>" + stars + "<br>" + "<button class='directions'>Directions</button>");
+        infowindow.setContent("<div id='info'>" + place.name + "<br>" + place.adr_address + "<br>" + place.formatted_phone_number+ "<br>" + photo + "<br>" + stars + "<br>" + '<button id="directions">Directions</button></div>');
+
+        $('#directions').parent().parent().parent().parent().siblings().addClass('test');
+
 
         console.log("this is the place detail", place);
       }
@@ -305,6 +308,8 @@ gMaps.createPlaceMarker = function(place){
 
   });
 }
+
+// Star Rating
 
 gMaps.starRating = function(rating) {
      var fullStar = "<i class='fa fa-star'></i>";
