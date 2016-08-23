@@ -197,24 +197,18 @@ gMaps.initEventHandlers = function() {
     gMaps.getPlaces();
   });
 
-//   document.getElementById("nightClub").addEventListener("click", function(){
-//     gMaps.removePlaceMarkers();
-//     gMaps.placeType = ["night_club"];
-//     gMaps.placeQuery = "";
-//     gMaps.getPlaces();
-//   });
-
   document.getElementById("casino").addEventListener("click", function(){
     gMaps.removePlaceMarkers();
-    gMaps.placeType = ["casino"];
-    gMaps.placeQuery = "";
+    gMaps.placeType = [];
+    gMaps.placeQuery = "casino";
     gMaps.getPlaces();
   });
 
   document.getElementById("ghost").addEventListener("click", function(){
+    console.log("clicked")
     gMaps.removePlaceMarkers();
-    gMaps.placeType = ["funeral_home", "cemetery"];
-    gMaps.placeQuery = "";
+    gMaps.placeType = [];
+    gMaps.placeQuery = "funeral";
     gMaps.getPlaces();
   });
 
@@ -227,8 +221,15 @@ gMaps.initEventHandlers = function() {
 
   document.getElementById("strippers").addEventListener("click", function(){
     gMaps.removePlaceMarkers();
-    gMaps.placeType = ["strip club"];
-    gMaps.placeQuery = "";
+    gMaps.placeType = [];
+    gMaps.placeQuery = "strip club";
+    gMaps.getPlaces();
+  });
+
+  document.getElementById("condom").addEventListener("click", function(){
+    gMaps.removePlaceMarkers();
+    gMaps.placeType = [];
+    gMaps.placeQuery = "sti clinic";
     gMaps.getPlaces();
   });
 
@@ -292,8 +293,9 @@ gMaps.createPlaceMarker = function(place){
 
     placeDetails = gMaps.service.getDetails({placeId: place.place_id}, function(place, status){
       if (status === google.maps.places.PlacesServiceStatus.OK) {
-        console.log(place);
-        infowindow.setContent(place.name + "<br>" + place.adr_address + "<br>" + place.formatted_phone_number+ "<br>" + photo);
+        stars = gMaps.starRating(place.rating);
+
+        infowindow.setContent(place.name + "<br>" + place.adr_address + "<br>" + place.formatted_phone_number+ "<br>" + photo + "<br>" + stars + "<br>" + "<button class='directions'>Directions</button>");
 
         console.log("this is the place detail", place);
       }
@@ -302,6 +304,33 @@ gMaps.createPlaceMarker = function(place){
     infowindow.open(gMaps.map, this);
 
   });
+}
+
+gMaps.starRating = function(rating) {
+     var fullStar = "<i class='fa fa-star'></i>";
+     var halfStar = "<i class='fa fa-star-half-o'></i>";
+     var emptyStar = "<i class='fa fa-star-o'></i>";
+
+     var output = [];
+
+     var numberOfFullStars = Math.floor(rating);
+
+     for (i = 0; i < numberOfFullStars; i++) {
+         output.push(fullStar);
+     }
+
+     if (rating % 1 != 0) {
+         output.push(halfStar);
+     }
+
+     var numberofEmptyStars = (5 - output.length);
+
+     for (i = 0; i < numberofEmptyStars; i++) {
+         output.push(emptyStar);
+     }
+
+     var stars = output.join(" ");
+     return stars;
 }
 
 gMaps.removePlaceMarkers = function() {
@@ -329,9 +358,6 @@ gMaps.initializeRepeater = function() {
     }
   });
 }
-
-
-
 
 gMaps.init = function(){
   console.log("gmaps init");

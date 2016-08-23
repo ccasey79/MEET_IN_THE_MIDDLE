@@ -109,7 +109,9 @@ input.form-control:focus{
       box-shadow: none;
 }
 
-
+.fa {
+  color: #E84855;
+} 
 
 /*.form-wrapper{
     margin: 0 auto;
@@ -142,6 +144,7 @@ button.red-btn.go{
   display: block;
   line-height: 0;
   font-weight: 700;
+  padding: 2em;
 }
 
 h3 {
@@ -162,6 +165,15 @@ button.remove {
   background-color: transparent;
   border: none;
   margin-top: 1.5em;
+}
+
+button.directions {
+  background-color: #E84855;
+  padding-top: 0.8em;
+  padding-bottom: 0.8em;
+  padding-right: 2em;
+  padding-left: 2em;
+  color: #fff;
 }
 
 #drink{
