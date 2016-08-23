@@ -6,7 +6,8 @@ var userSchema = new mongoose.Schema({
   lastName: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   passwordHash: { type: String, required: true },
-  friends: [{ type: mongoose.Schema.ObjectId, ref: 'User' }]
+  friends: [{ type: mongoose.Schema.ObjectId, ref: 'User' }],
+  profile_pic: String
 });
 
 userSchema.set('toJSON', {

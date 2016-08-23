@@ -50,7 +50,7 @@ MiddleApp.handleForm = function() {
 
   $(this).find("button").prop("disabled", true);
 
-  var data = $(this).serialize();
+  var data = new FormData(this);
   var method = $(this).attr("method");
   var url = MiddleApp.API_URL + $(this).attr("action");
 
@@ -58,6 +58,9 @@ MiddleApp.handleForm = function() {
     url: url,
     method: method,
     data: data,
+    contentType: null,
+    cache: false,
+    processData: false,
     beforeSend: MiddleApp.setRequestHeader
   }).done(function(data){
     if(!!data.token){
