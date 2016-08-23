@@ -281,6 +281,7 @@ gMaps.init();
 
 $(function() {
   $(".form-group.repeater button").on('click', function() {
+    console.log("clicked");
     var $form = $(this).parents('form');
     var $repeater = $(this).parents('.repeater');
     

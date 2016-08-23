@@ -149,7 +149,7 @@ h3 {
   font-size: 1.6em;
   text-transform: uppercase;
 }
-.form-group:first-child button.remove {
+.form-group:nth-child(2) button.remove {
   display: none;
 }
 
