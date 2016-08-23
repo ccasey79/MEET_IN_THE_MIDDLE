@@ -93,11 +93,13 @@ h2.text-center {
 
 input.form-control {
   min-width: 400px;
+  max-width: 600px;
   border: none;
   border-bottom: 1px solid #1B998B;
   -webkit-box-shadow: none;
   box-shadow: none;
   border-radius: 0;
+  
 
 }
 input.form-control:focus{
@@ -107,6 +109,13 @@ input.form-control:focus{
       box-shadow: none;
 }
 
+
+
+/*.form-wrapper{
+    margin: 0 auto;
+    width:50%
+
+}*/
 
 button.red-btn {
   padding-top: 1em;
@@ -125,3 +134,126 @@ button.red-btn:hover{
   background-color: #2D3047;
 }
 
+button.red-btn.go{
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 3em;
+  width: 18em;
+  display: block;
+  line-height: 0;
+  font-weight: 700;
+}
+
+h3 {
+  color: #2D3047;
+  font-size: 1.6em;
+  text-transform: uppercase;
+}
+.form-group:first-child button.remove {
+  display: none;
+}
+
+button.add {
+  background-color: transparent;
+  border: none;
+  margin-top: 1.5em;
+}
+button.remove {
+  background-color: transparent;
+  border: none;
+  margin-top: 1.5em;
+}
+
+#drink{
+  margin: 0;
+  padding: 0;
+  height: 62px;
+  width: 62px;
+  background: url(../images/drink.png);
+  display: inline-block;
+}
+#drink:hover {
+  background: url(../images/drink-green.png);
+}
+
+#food{
+  margin: 0;
+  padding: 0;
+  height: 62px;
+  width: 62px;
+  background: url(../images/food.png);
+  display: inline-block;
+}
+#food:hover {
+  background: url(../images/food-green.png);
+}
+
+#coffee{
+  margin: 0;
+  padding: 0;
+  height: 62px;
+  width: 62px;
+  background: url(../images/coffee.png);
+  display: inline-block;
+}
+#coffee:hover {
+  background: url(../images/coffee-green.png);
+}
+#shop{
+  margin: 0;
+  padding: 0;
+  height: 62px;
+  width: 62px;
+  background: url(../images/shop.png);
+  display: inline-block;
+}
+#shop:hover {
+  background: url(../images/shop-green.png);
+}
+
+#strippers{
+  margin: 0;
+  padding: 0;
+  height: 62px;
+  width: 62px;
+  background: url(../images/strippers.png);
+  display: inline-block;
+}
+#strippers:hover {
+  background: url(../images/strippers-green.png);
+}
+#condom{
+  margin: 0;
+  padding: 0;
+  height: 62px;
+  width: 62px;
+  background: url(../images/condom.png);
+  display: inline-block;
+}
+#condom:hover {
+  background: url(../images/condom-green.png);
+}
+
+#casino{
+  margin: 0;
+  padding: 0;
+  height: 62px;
+  width: 62px;
+  background: url(../images/casino.png);
+  display: inline-block;
+}
+#casino:hover {
+  background: url(../images/casino-green.png);
+}
+
+#ghost{
+  margin: 0;
+  padding: 0;
+  height: 62px;
+  width: 62px;
+  background: url(../images/ghost.png);
+  display: inline-block;
+}
+#ghost:hover {
+  background: url(../images/ghost-green.png);
+}

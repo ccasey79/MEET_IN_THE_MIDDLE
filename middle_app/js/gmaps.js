@@ -181,6 +181,9 @@ gMaps.createMarker = function(place){
 
 }
 
+
+
+
 gMaps.init = function(){
   console.log("gmaps init");
   this.getUserLocation();
@@ -190,7 +193,22 @@ gMaps.init = function(){
 
 gMaps.init();
 
+$(function() {
+  $(".form-group.repeater button").on('click', function() {
+    var $form = $(this).parents('form');
+    var $repeater = $(this).parents('.repeater');
+    
 
+    if($(this).hasClass('add')) {
+      var $newGroup = $repeater.clone(true);
+      $newGroup.appendTo($form);
+    }
+
+    if($(this).hasClass('remove')) {
+      $repeater.remove();
+    }
+  });
+});
 
 
 
