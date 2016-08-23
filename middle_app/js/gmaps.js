@@ -29,7 +29,7 @@ gMaps.getUserLocation = function(){
   navigator.geolocation.getCurrentPosition(function(position){
 
     var location = {lat: position.coords.latitude, lng: position.coords.longitude };
-    var marker = gMaps.createMarker(location, "http://maps.google.com/mapfiles/ms/icons/red-dot.png");
+    var marker = gMaps.createMarker(location, "../images/you-pin.png");
 
     gMaps.map.panTo(marker.getPosition());
     gMaps.map.setZoom(16);
@@ -70,12 +70,12 @@ gMaps.createAutoCompleteWithMarker = function(selector, icon, idx) {
 }
 
 gMaps.addAutoCompleteToLocation = function() {
-  gMaps.createAutoCompleteWithMarker('#pac-input', "http://maps.google.com/mapfiles/ms/icons/red-dot.png", 0);
+  gMaps.createAutoCompleteWithMarker('#pac-input', "../images/you-pin.png", 0);
 }
 
 gMaps.addAutoCompleteToRepeater = function (){
   var idx = $(".form-group.repeater:last-child").index();
-  gMaps.createAutoCompleteWithMarker(".form-group.repeater:last-child .autocomplete", "http://jovansfreelance.com/bikestats/images/bike_red.png", idx);
+  gMaps.createAutoCompleteWithMarker(".form-group.repeater:last-child .autocomplete", "../images/wally-pin.png", idx);
 }
 
 
