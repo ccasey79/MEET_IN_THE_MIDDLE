@@ -5,7 +5,7 @@
 <div class="container form-wrapper">
  
     <form class="row">
-      <div class="col-md-6 col-md-offset-3">
+      <div class="col-md-6 col-md-offset-3 people">
         <div class="form-group">
           <h3>Your Location</h3>
           <input id="pac-input" class="controls form-control" type="text" placeholder="Enter a location">
@@ -14,31 +14,26 @@
         
         <div class="form-group repeater">
           <h3>Your Friend's Location</h3>
-          <input id="pac-input" name="repeating-data[]" class="controls form-control" type="text" placeholder="Enter a location">
+          <input name="repeating-data[]" class="autocomplete controls form-control" type="text" placeholder="Enter a location">
           <button type="button" class="add"><img src="/images/user-plus.png"></button>
           <button type="button" class="remove"><img src="/images/user-minus.png"></button>
         </div>
 
-        <div id="more-people">
-          
-        </div>
-
-        <div id="drink"></div>
-        <div id="food"></div>
-        <div id="coffee"></div>
-        <div id="shop"></div>
-        <div id="strippers"></div>
-        <div id="condom"></div>
-        <div id="casino"></div>
-        <div id="ghost"></div>
-
-        <div class="form-group">
-          <button id="findCenterButton" class="red-btn go form-control">Find the middle</button>
-        </div>
-
       </div>
     </form>
-
+    <div class="col-md-6 col-md-offset-3">
+      <div id="drink"></div>
+      <div id="food"></div>
+      <div id="coffee"></div>
+      <div id="shop"></div>
+      <div id="strippers"></div>
+      <div id="condom"></div>
+      <div id="casino"></div>
+      <div id="ghost"></div>
+      <div class="form-group">
+        <button id="findCenterButton" class="red-btn go form-control">Find the middle</button>
+      </div>
+    </div>
 </div>
 
 <script type="text/javascript" src="js/gmaps.js"></script>
