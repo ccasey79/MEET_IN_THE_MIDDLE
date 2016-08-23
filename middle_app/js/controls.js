@@ -1,3 +1,5 @@
+var gMaps = gMaps || {};
+
 $(function() {
   $(".form-group.repeater button").on('click', function() {
     console.log("clicked");
@@ -7,7 +9,9 @@ $(function() {
 
     if($(this).hasClass('add')) {
       var $newGroup = $repeater.clone(true);
+      $newGroup.find('input').val('');
       $newGroup.appendTo('.people');
+      gMaps.addAutoCompleteToRepeater();
     }
 
     if($(this).hasClass('remove')) {
