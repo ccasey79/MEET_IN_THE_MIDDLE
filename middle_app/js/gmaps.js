@@ -197,24 +197,18 @@ gMaps.initEventHandlers = function() {
     gMaps.getPlaces();
   });
 
-//   document.getElementById("nightClub").addEventListener("click", function(){
-//     gMaps.removePlaceMarkers();
-//     gMaps.placeType = ["night_club"];
-//     gMaps.placeQuery = "";
-//     gMaps.getPlaces();
-//   });
-
   document.getElementById("casino").addEventListener("click", function(){
     gMaps.removePlaceMarkers();
-    gMaps.placeType = ["casino"];
-    gMaps.placeQuery = "";
+    gMaps.placeType = [];
+    gMaps.placeQuery = "casino";
     gMaps.getPlaces();
   });
 
   document.getElementById("ghost").addEventListener("click", function(){
+    console.log("clicked")
     gMaps.removePlaceMarkers();
-    gMaps.placeType = ["funeral_home", "cemetery"];
-    gMaps.placeQuery = "";
+    gMaps.placeType = [];
+    gMaps.placeQuery = "funeral";
     gMaps.getPlaces();
   });
 
@@ -227,8 +221,15 @@ gMaps.initEventHandlers = function() {
 
   document.getElementById("strippers").addEventListener("click", function(){
     gMaps.removePlaceMarkers();
-    gMaps.placeType = ["strip club"];
-    gMaps.placeQuery = "";
+    gMaps.placeType = [];
+    gMaps.placeQuery = "strip club";
+    gMaps.getPlaces();
+  });
+
+  document.getElementById("condom").addEventListener("click", function(){
+    gMaps.removePlaceMarkers();
+    gMaps.placeType = [];
+    gMaps.placeQuery = "sti clinic";
     gMaps.getPlaces();
   });
 
