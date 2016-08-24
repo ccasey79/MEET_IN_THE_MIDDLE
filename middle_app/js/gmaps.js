@@ -38,6 +38,7 @@ gMaps.getUserLocation = function(){
     var location = {lat: position.coords.latitude, lng: position.coords.longitude };
 
     gMaps.userLocation = location;
+
     var marker = gMaps.createMarker(location, "../images/you-pin.svg");
 
 
@@ -273,7 +274,6 @@ gMaps.createPlaceMarker = function(place){
 
         $('#place-directions').click(function(){
           gMaps.findRoute(place.geometry.location);
-          gMaps.removePlaceMarkers();
           $('#placesModal').modal('hide');
           $('#transport-icons').fadeIn(600);
         });      
