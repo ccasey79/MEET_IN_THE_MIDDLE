@@ -50,16 +50,22 @@ MiddleApp.handleForm = function() {
 
   $(this).find("button").prop("disabled", true);
 
-  var data = $(this).serialize();
-  var method = $(this).attr("method");
-  var url = MiddleApp.API_URL + $(this).attr("action");
-
-  return $.ajax({
-    url: url,
-    method: method,
-    data: data,
+  var ajaxOpts = {
+    url: MiddleApp.API_URL + $(this).attr("action"),
+    method: method = $(this).attr("method"),
     beforeSend: MiddleApp.setRequestHeader
-  }).done(function(data){
+  };
+
+  if($(this).attr('enctype') === 'multipart/form-data') {
+    ajaxOpts.data = new FormData(this);
+    ajaxOpts.contentType = false;
+    ajaxOpts.cache = false;
+    ajaxOpts.processData = false;
+  } else {
+    ajaxOpts.data = $(this).serialize();
+  }
+
+  return $.ajax(ajaxOpts).done(function(data){
     if(!!data.token){
       window.localStorage.setItem("token", data.token);
     }

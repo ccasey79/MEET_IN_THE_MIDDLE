@@ -30,7 +30,7 @@ gMaps.getUserLocation = function(){
   navigator.geolocation.getCurrentPosition(function(position){
 
     var location = {lat: position.coords.latitude, lng: position.coords.longitude };
-    var marker = gMaps.createMarker(location, "http://maps.google.com/mapfiles/ms/icons/red-dot.png");
+    var marker = gMaps.createMarker(location, "../images/you-pin.png");
 
     gMaps.map.panTo(marker.getPosition());
     gMaps.map.setZoom(16);
@@ -71,62 +71,13 @@ gMaps.createAutoCompleteWithMarker = function(selector, icon, idx) {
 }
 
 gMaps.addAutoCompleteToLocation = function() {
-  gMaps.createAutoCompleteWithMarker('#pac-input', "http://maps.google.com/mapfiles/ms/icons/red-dot.png", 0);
+  gMaps.createAutoCompleteWithMarker('#pac-input', "../images/you-pin.png", 0);
 }
 
 gMaps.addAutoCompleteToRepeater = function (){
   var idx = $(".form-group.repeater:last-child").index();
-  gMaps.createAutoCompleteWithMarker(".form-group.repeater:last-child .autocomplete", "http://jovansfreelance.com/bikestats/images/bike_red.png", idx);
+  gMaps.createAutoCompleteWithMarker(".form-group.repeater:last-child .autocomplete", "../images/wally-pin.png", idx);
 }
-
-
-// gMaps.autocompleteInput = function () {
-
-//   autocomplete = new google.maps.places.Autocomplete(gMaps.input);
-
-//   google.maps.event.addListener(autocomplete, 'place_changed', function(){
-//     var place = autocomplete.getPlace();
-//     var marker = new google.maps.Marker({
-//       map: gMaps.map,
-//       animation: google.maps.Animation.DROP,
-//       icon: "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
-//     });
-
-//     if (!place.geometry) {
-//       window.alert("Autocomplete's returned place contains no geometry");
-//       return;
-//     }
-
-//     if (place.geometry.viewport) {
-//       gMaps.map.fitBounds(place.geometry.viewport);
-//     } else {
-//       gMaps.map.setCenter(place.geometry.location);
-//       gMaps.map.setZoom(16); 
-//     }
-//     marker.setIcon("http://jovansfreelance.com/bikestats/images/bike_red.png",({
-//       url: place.icon,
-//       size: new google.maps.Size(71, 71),
-//       origin: new google.maps.Point(0, 0),
-//       anchor: new google.maps.Point(17, 34),
-//       scaledSize: new google.maps.Size(35, 35)
-//     }));
-//     marker.setPosition(place.geometry.location);
-//     marker.setVisible(true);
-//     gMaps.markers.push(marker);
-
-//     var address = '';
-//     if (place.address_components) {
-//       address = [
-//         (place.address_components[0] && place.address_components[0].short_name || ''),
-//         (place.address_components[1] && place.address_components[1].short_name || ''),
-//         (place.address_components[2] && place.address_components[2].short_name || '')
-//       ].join(' ');
-//     }
-
-//        // infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
-//        // infowindow.open(map, marker);
-//   });
-// }
 
 //Find the Center
 
@@ -198,23 +149,15 @@ gMaps.initEventHandlers = function() {
     gMaps.getPlaces();
   });
 
-//   document.getElementById("nightClub").addEventListener("click", function(){
-//     gMaps.removePlaceMarkers();
-//     gMaps.placeType = ["night_club"];
-//     gMaps.placeQuery = "";
-//     gMaps.getPlaces();
-//   });
-
   document.getElementById("casino").addEventListener("click", function(){
     gMaps.removePlaceMarkers();
     gMaps.placeType = [];
     gMaps.placeQuery = "casino";
-    console.log(gMaps.placeQuery);
-    console.log(gMaps.placeType);
     gMaps.getPlaces();
   });
 
   document.getElementById("ghost").addEventListener("click", function(){
+    console.log("clicked")
     gMaps.removePlaceMarkers();
     gMaps.placeType = [];
     gMaps.placeQuery = "funeral";
@@ -233,8 +176,13 @@ gMaps.initEventHandlers = function() {
     gMaps.removePlaceMarkers();
     gMaps.placeType = [];
     gMaps.placeQuery = "strip club";
-    console.log(gMaps.placeQuery);
-    console.log(gMaps.placeType);
+    gMaps.getPlaces();
+  });
+
+  document.getElementById("condom").addEventListener("click", function(){
+    gMaps.removePlaceMarkers();
+    gMaps.placeType = [];
+    gMaps.placeQuery = "sti clinic";
     gMaps.getPlaces();
   });
 
@@ -294,7 +242,6 @@ gMaps.createPlaceMarker = function(place){
     placeDetails = gMaps.service.getDetails({placeId: place.place_id}, function(place, status){
 
       if (status === google.maps.places.PlacesServiceStatus.OK) {
-        console.log(place);
 
         var photo = "";
 
@@ -302,25 +249,54 @@ gMaps.createPlaceMarker = function(place){
           photo = "<img class='placePhoto' src='" + place.photos[0].getUrl({ 'maxWidth': 150, 'maxHeight': 150 }) +"'>";
         }
 
+        stars = gMaps.starRating(place.rating);
+
         $('.modal-title').html(place.name);
         $('.modal-body').html(
             photo +
             '<p>' + place.adr_address + '</p>'+
             '<p><a href="tel:'+place.formatted_phone_number+'">'+
             place.formatted_phone_number +
-            '</a></p>'
+            '</a></p>' +
+            stars
           );
 
         $('#myModal').modal('show');
-        // infowindow.setContent(place.name + "<br>" + place.adr_address + "<br>" + place.formatted_phone_number+ "<br>" + photo);
 
         console.log("this is the place detail", place);
       }
     });
 
-    // infowindow.open(gMaps.map, this);
-
   });
+}
+
+// Star Rating
+
+gMaps.starRating = function(rating) {
+     var fullStar = "<i class='fa fa-star'></i>";
+     var halfStar = "<i class='fa fa-star-half-o'></i>";
+     var emptyStar = "<i class='fa fa-star-o'></i>";
+
+     var output = [];
+
+     var numberOfFullStars = Math.floor(rating);
+
+     for (i = 0; i < numberOfFullStars; i++) {
+         output.push(fullStar);
+     }
+
+     if (rating % 1 != 0) {
+         output.push(halfStar);
+     }
+
+     var numberofEmptyStars = (5 - output.length);
+
+     for (i = 0; i < numberofEmptyStars; i++) {
+         output.push(emptyStar);
+     }
+
+     var stars = output.join(" ");
+     return stars;
 }
 
 gMaps.removePlaceMarkers = function() {
@@ -348,9 +324,6 @@ gMaps.initializeRepeater = function() {
     }
   });
 }
-
-
-
 
 gMaps.init = function(){
   console.log("gmaps init");
