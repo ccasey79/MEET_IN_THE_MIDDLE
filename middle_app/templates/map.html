@@ -3,7 +3,7 @@
 </div>
 
 <div class="container form-wrapper">
- <div id="routeSteps"></div>
+ 
     <form class="row">
       <div class="col-md-6 col-md-offset-3 people">
 
@@ -16,8 +16,8 @@
             <div id="bike"></div>         
           </div>
         </div>
-
-        <div class="collapse" id="collapsed-activities">
+      <div id="routeSteps"></div>
+        <div class="" id="collapsed-activities">
           <div class="well">
             <h3>Choose Activity</h3>
             <div id="drink"></div>
@@ -47,7 +47,7 @@
     </form>
     <div class="col-md-6 col-md-offset-3">
       <div class="form-group">
-        <button id="findCenterButton" role="button" data-toggle="collapse" href="#collapsed-activities" aria-expanded="false" aria-controls="collapseExample" class="red-btn go form-control">Find the middle</button>
+        <button id="findCenterButton" role="button" class="red-btn go form-control">Find the middle</button>
       </div>
 
 
@@ -67,14 +67,14 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title"></h4>
+        <h3 class="modal-title"></h3>
       </div>
       <div class="modal-body">
         <p>Some text in the modal.</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" id="place-directions">Directions</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn red-btn btn-primary" id="place-directions">Directions</button>
+        <button type="button" class="btn blue-btn btn-primary" data-dismiss="modal">Close</button>
       </div>
     </div>
 
@@ -89,13 +89,13 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Oops...</h4>
+        <h3 class="modal-title">Oops...</h3>
       </div>
       <div class="modal-body">
         <p>Sorry, there are no places within a 250 meter radius of the middle.</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-red btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
 

@@ -7,6 +7,8 @@ gMaps.placeMarkers =[];
 gMaps.userLocation;
 
 $("#transport-icons").hide();
+$("#collapsed-activities").hide();
+
 
 gMaps.map = new google.maps.Map(document.getElementById("map"), { 
   center: { lat: 51.5080072, lng: -0.1019284 },
@@ -135,6 +137,7 @@ gMaps.getCenterOfMarkers = function() {
 gMaps.initEventHandlers = function() {
   $('#findCenterButton').on("click", function(){
     gMaps.getCenterOfMarkers();
+    $('#collapsed-activities').fadeIn(600);
   });
 
 
@@ -349,14 +352,14 @@ gMaps.findRoute = function(place) {
           console.log(route[i]);
 
           $("#routeSteps").append("<div class='routeStep'>"+route[i].instructions+"</div>" + 
-            "<div class='duration'>"+ route[i].duration.text +"</div>");
+            "<div class='duration'>"+ route[i].duration.text +"<hr></div>");
 
         duration += route[i].duration.value;
         // console.log(route[i].duration, route[i].duration.value, duration);
       }
       duration = Math.round(duration/60);
 
-      $("#routeSteps").append("<div class='totalDuration'>Total estimated time: "+ duration +" minutes.</div>")
+      $("#routeSteps").append("<div class='totalDuration'>Total estimated time: "+ duration +" minutes.<hr></div>")
       console.log("TOTAL "+ duration +" seconds");
     }  
   });

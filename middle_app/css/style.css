@@ -161,6 +161,25 @@ button.red-btn.go{
   padding: 2em;
 }
 
+button.blue-btn {
+  padding-top: 1em;
+  padding-bottom: 1em;
+  padding-right: 3em;
+  padding-left: 3em;
+  color: #fff;
+  background-color: #2D3047;
+  display: inline-block;
+  text-align: center;
+  border: none;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-top: 0em;
+}
+
+button.blue-btn:hover {
+  background-color: #1B998B;
+}
+
 h3 {
   color: #2D3047;
   font-size: 1.6em;
@@ -378,3 +397,23 @@ border: solid 5px #E84855;
   
 }
 
+#routeSteps {
+  color: #1B998B;
+}
+.duration {
+  font-size: 0.8em;
+  color: #95989A;
+}
+
+.totalDuration {
+  font-size: 1.2em;
+  font-weight: 700;
+}
+button#place-directions.btn.red-btn.btn-primary {
+  font-weight: 700;
+  margin-top: 0em;
+}
+
+button#place-directions.btn.red-btn.btn-primary:hover {
+  background-color: #1B998B;
+}
