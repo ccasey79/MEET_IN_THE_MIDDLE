@@ -6,6 +6,8 @@ gMaps.markers = {};
 gMaps.placeMarkers =[];
 gMaps.userLocation;
 
+$("#transport-icons").hide();
+
 gMaps.map = new google.maps.Map(document.getElementById("map"), { 
   center: { lat: 51.5080072, lng: -0.1019284 },
   zoom: 14,
@@ -34,6 +36,7 @@ gMaps.getUserLocation = function(){
   navigator.geolocation.getCurrentPosition(function(position){
 
     var location = {lat: position.coords.latitude, lng: position.coords.longitude };
+
     gMaps.userLocation = location;
     var marker = gMaps.createMarker(location, "../images/you-pin.svg");
 
@@ -272,6 +275,7 @@ gMaps.createPlaceMarker = function(place){
           gMaps.findRoute(place.geometry.location);
           gMaps.removePlaceMarkers();
           $('#placesModal').modal('hide');
+          $('#transport-icons').fadeIn(600);
         });      
       }
     });
@@ -383,6 +387,8 @@ gMaps.initializeRepeater = function() {
     }
   });
 }
+
+
 
 gMaps.init = function(){
   this.getUserLocation();
