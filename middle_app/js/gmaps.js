@@ -4,10 +4,12 @@ var gMaps = gMaps || {};
 
 gMaps.markers = {};
 gMaps.placeMarkers =[];
+gMaps.userLocation;
 
 gMaps.map = new google.maps.Map(document.getElementById("map"), { 
   center: { lat: 51.5080072, lng: -0.1019284 },
   zoom: 14,
+  mapTypeId: google.maps.MapTypeId.ROADMAP,
   scrollwheel: false,
   styles: [{"elementType":"geometry","stylers":[{"hue":"#ff4400"},{"saturation":-68},{"lightness":-4},{"gamma":0.72}]},{"featureType":"road","elementType":"labels.icon"},{"featureType":"landscape.man_made","elementType":"geometry","stylers":[{"hue":"#0077ff"},{"gamma":3.1}]},{"featureType":"water","stylers":[{"hue":"#00ccff"},{"gamma":0.44},{"saturation":-33}]},{"featureType":"poi.park","stylers":[{"hue":"#44ff00"},{"saturation":-23}]},{"featureType":"water","elementType":"labels.text.fill","stylers":[{"hue":"#007fff"},{"gamma":0.77},{"saturation":65},{"lightness":99}]},{"featureType":"water","elementType":"labels.text.stroke","stylers":[{"gamma":0.11},{"weight":5.6},{"saturation":99},{"hue":"#0091ff"},{"lightness":-86}]},{"featureType":"transit.line","elementType":"geometry","stylers":[{"lightness":-48},{"hue":"#ff5e00"},{"gamma":1.2},{"saturation":-23}]},{"featureType":"transit","elementType":"labels.text.stroke","stylers":[{"saturation":-64},{"hue":"#ff9100"},{"lightness":16},{"gamma":0.47},{"weight":2.7}]}]
 });
@@ -30,6 +32,7 @@ gMaps.getUserLocation = function(){
   navigator.geolocation.getCurrentPosition(function(position){
 
     var location = {lat: position.coords.latitude, lng: position.coords.longitude };
+    gMaps.userLocation = location;
     var marker = gMaps.createMarker(location, "../images/you-pin.png");
 
     gMaps.map.panTo(marker.getPosition());
@@ -265,6 +268,11 @@ gMaps.createPlaceMarker = function(place){
         $('#placesModal').modal('show');
 
         console.log("this is the place detail", place);
+        $('#place-directions').click(function(){
+          gMaps.findRoute(place.geometry.location);
+          gMaps.removePlaceMarkers();
+          $('#placesModal').modal('hide');
+        });      
       }
     });
 
@@ -298,6 +306,39 @@ gMaps.starRating = function(rating) {
      var stars = output.join(" ");
      return stars;
 }
+
+// Directions route
+
+
+gMaps.findRoute = function(place) {
+  var directionsService = new google.maps.DirectionsService();
+  var directionsDisplay = new google.maps.DirectionsRenderer({
+    map: gMaps.map
+  });
+
+  var request = {
+      origin: gMaps.userLocation,
+      destination: place,
+      travelMode: google.maps.TravelMode.DRIVING
+    };
+
+  directionsService.route(request, function(response, status) {
+    if (status === google.maps.DirectionsStatus.OK) {
+      directionsDisplay.setDirections(response);
+      var route = response.routes[0];  
+    }  
+  });
+}
+
+
+
+// duration
+
+
+
+
+
+
 
 gMaps.removePlaceMarkers = function() {
   for (var i = 0; i < gMaps.placeMarkers.length; i++ ) {
