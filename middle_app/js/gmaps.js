@@ -25,6 +25,8 @@ gMaps.createMarker = function(location, icon) {
   return marker;  
 }
 
+gMaps.userLocation; 
+
 gMaps.getUserLocation = function(){
 
   navigator.geolocation.getCurrentPosition(function(position){
@@ -35,7 +37,17 @@ gMaps.getUserLocation = function(){
     gMaps.map.panTo(marker.getPosition());
     gMaps.map.setZoom(16);
     gMaps.markers[0] = marker;
+    gMaps.userLocation = location;
+    console.log(gMaps.userLocation.lat());
 
+    var geocoder = new google.maps.Geocoder();
+      geocoder.geocode(location, function (results, status) {
+          if (status == google.maps.GeocoderStatus.OK) {
+              if (results[1]) {
+                  alert("Location: " + results[1].formatted_address);
+              }
+          }
+      });
   });
 }
 
@@ -221,6 +233,7 @@ gMaps.createPlaceMarkers = function (results, status) {
   if(results.length === 0){
     $('#noPlacesModal').modal('show');
   }
+  console.log("list of places" + results);
 }
 
 gMaps.createPlaceMarker = function(place){
@@ -239,7 +252,7 @@ gMaps.createPlaceMarker = function(place){
 
   google.maps.event.addListener(placeMarker, "click", function(){
     console.log(this);
-    
+
     placeDetails = gMaps.service.getDetails({placeId: place.place_id}, function(place, status){
 
       if (status === google.maps.places.PlacesServiceStatus.OK) {
