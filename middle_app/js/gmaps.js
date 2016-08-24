@@ -32,12 +32,11 @@ gMaps.getUserLocation = function(){
   navigator.geolocation.getCurrentPosition(function(position){
 
     var location = {lat: position.coords.latitude, lng: position.coords.longitude };
-<<<<<<< HEAD
+
     gMaps.userLocation = location;
-    var marker = gMaps.createMarker(location, "../images/you-pin.png");
-=======
+
     var marker = gMaps.createMarker(location, "../images/you-pin.svg");
->>>>>>> development
+
 
     gMaps.map.panTo(marker.getPosition());
     gMaps.map.setZoom(16);
