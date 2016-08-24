@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-12737 1051 62 62" width="62" height="62">
+  <defs>
+    <style>
+      .cls-1, .cls-5 {
+        fill: none;
+      }
+
+      .cls-1, .cls-2, .cls-3 {
+        stroke: #1b998b;
+      }
+
+      .cls-1 {
+        stroke-width: 1px;
+      }
+
+      .cls-2 {
+        fill: #fff;
+      }
+
+      .cls-2, .cls-3 {
+        stroke-width: 6px;
+      }
+
+      .cls-3 {
+        fill: rgba(0,0,0,0);
+      }
+
+      .cls-4 {
+        stroke: none;
+      }
+    </style>
+  </defs>
+  <g id="group-93" transform="translate(-13383 408)">
+    <g id="group-25" transform="translate(623 82)">
+      <g id="rectangle-6" class="cls-1" transform="translate(23 561)">
+        <rect class="cls-4" width="62" height="62" rx="5"/>
+        <rect class="cls-5" x="0.5" y="0.5" width="61" height="61" rx="4.5"/>
+      </g>
+    </g>
+    <g id="group-31" transform="translate(375.5 112)">
+      <g id="ellipse-6" class="cls-2" transform="translate(283.768 544)">
+        <circle class="cls-4" cx="18.144" cy="18.144" r="18.144"/>
+        <circle class="cls-5" cx="18.144" cy="18.144" r="15.144"/>
+      </g>
+      <path id="line-5" class="cls-3" d="M0,0H45.652" transform="translate(278.5 562.144)"/>
+    </g>
+  </g>
+</svg>
