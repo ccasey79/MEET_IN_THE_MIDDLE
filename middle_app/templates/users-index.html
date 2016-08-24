@@ -1,14 +1,15 @@
-<h1>USERS</h1>
-
-<ul class="list-group">
-  <% users.forEach(function(user) { %>
-    <a id="test" href="#" class="show-user" data-id="<%= user._id%>">
-      <li class="list-group-item">
-        <h4><%= user.firstName %></h4>
-        <h5><%= user.lastName %></h5>
-      <h5><%= user.email %></h5>
-      </li>
-    </a>
-    <% }) %>
-</ul>
-
+<div class="container">
+  <h3>USERS</h3>
+  <div class="row">
+    
+      <% users.forEach(function(user) { %>
+        <div class="col-md-3">
+          <img class="img-circle img-responsive center-block" src="<%= user.profilePicUrl %>">
+          <a id="test" href="#" class="show-user" data-id="<%= user._id%>">
+            <h4 class="text-center"><%= user.firstName %> <%= user.lastName %></h4>
+          </a>    
+        </div>
+      <% }) %>
+   
+  </div>
+</div>

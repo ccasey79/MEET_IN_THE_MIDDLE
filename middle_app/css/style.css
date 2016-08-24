@@ -285,3 +285,8 @@ button.remove {
   
 }
 
+img.img-circle.img-responsive{
+max-height: 200px;
+max-width: 200px;
+border: solid 5px #E84855;
+}
