@@ -40,6 +40,7 @@ gMaps.getUserLocation = function(){
     var location = {lat: position.coords.latitude, lng: position.coords.longitude };
 
     gMaps.userLocation = location;
+
     var marker = gMaps.createMarker(location, "../images/you-pin.svg");
 
 
@@ -276,7 +277,6 @@ gMaps.createPlaceMarker = function(place){
 
         $('#place-directions').click(function(){
           gMaps.findRoute(place.geometry.location);
-          gMaps.removePlaceMarkers();
           $('#placesModal').modal('hide');
           $('#transport-icons').fadeIn(600);
         });      
@@ -344,6 +344,10 @@ gMaps.findRoute = function(place) {
   gMaps.directionsService.route(request, function(response, status) {
     if (status === google.maps.DirectionsStatus.OK) {
 
+      $(".routeStep").remove();
+      $(".duration").remove();
+      $(".totalDuration").remove();
+
       gMaps.directionsDisplay.setDirections(response);
       var route = response.routes[0].legs[0].steps; 
       var duration = 0;
@@ -359,8 +363,7 @@ gMaps.findRoute = function(place) {
       }
       duration = Math.round(duration/60);
 
-      $("#routeSteps").append("<div class='totalDuration'>Total estimated time: "+ duration +" minutes.<hr></div>")
-      console.log("TOTAL "+ duration +" seconds");
+      $("#routeSteps").append("<div class='totalDuration'>Total estimated time: "+ duration +" minutes.<hr></div>");
     }  
   });
 }
