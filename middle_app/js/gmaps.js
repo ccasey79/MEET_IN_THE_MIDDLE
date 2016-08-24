@@ -34,27 +34,15 @@ gMaps.getUserLocation = function(){
   navigator.geolocation.getCurrentPosition(function(position){
 
     var location = {lat: position.coords.latitude, lng: position.coords.longitude };
-<<<<<<< HEAD
     gMaps.userLocation = location;
-    var marker = gMaps.createMarker(location, "../images/you-pin.png");
-=======
     var marker = gMaps.createMarker(location, "../images/you-pin.svg");
->>>>>>> development
+
 
     gMaps.map.panTo(marker.getPosition());
     gMaps.map.setZoom(16);
     gMaps.markers[0] = marker;
     gMaps.userLocation = location;
-    console.log(gMaps.userLocation.lat());
 
-    var geocoder = new google.maps.Geocoder();
-      geocoder.geocode(location, function (results, status) {
-          if (status == google.maps.GeocoderStatus.OK) {
-              if (results[1]) {
-                  alert("Location: " + results[1].formatted_address);
-              }
-          }
-      });
   });
 }
 
@@ -176,7 +164,6 @@ gMaps.initEventHandlers = function() {
   });
 
   $("#ghost").click(function(){
-    console.log("clicked")
     gMaps.removePlaceMarkers();
     gMaps.placeType = [];
     gMaps.placeQuery = "funeral";
@@ -187,7 +174,6 @@ gMaps.initEventHandlers = function() {
     gMaps.removePlaceMarkers();
     gMaps.placeType = [];
     gMaps.placeQuery = "sti clinic";
-    console.log(gMaps.placeQuery);
     gMaps.getPlaces();
   });
 
@@ -240,7 +226,6 @@ gMaps.createPlaceMarkers = function (results, status) {
   if(results.length === 0){
     $('#noPlacesModal').modal('show');
   }
-  console.log("list of places" + results);
 }
 
 gMaps.createPlaceMarker = function(place){
@@ -258,7 +243,6 @@ gMaps.createPlaceMarker = function(place){
   gMaps.placeMarkers.push(placeMarker);
 
   google.maps.event.addListener(placeMarker, "click", function(){
-    console.log(this);
 
     placeDetails = gMaps.service.getDetails({placeId: place.place_id}, function(place, status){
 
@@ -284,7 +268,6 @@ gMaps.createPlaceMarker = function(place){
 
         $('#placesModal').modal('show');
 
-        console.log("this is the place detail", place);
         $('#place-directions').click(function(){
           gMaps.findRoute(place.geometry.location);
           gMaps.removePlaceMarkers();
@@ -327,11 +310,23 @@ gMaps.starRating = function(rating) {
 // Directions route
 
 
+gMaps.directionsService;
+gMaps.directionsDisplay;
+
 gMaps.findRoute = function(place) {
-  var directionsService = new google.maps.DirectionsService();
-  var directionsDisplay = new google.maps.DirectionsRenderer({
-    map: gMaps.map
+
+  if (gMaps.directionsDisplay != null) {  
+        gMaps.directionsDisplay.setMap(null);
+        gMaps.directionsDisplay = null;
+      }
+
+  gMaps.directionsService = new google.maps.DirectionsService();
+  gMaps.directionsDisplay = new google.maps.DirectionsRenderer({
+    map: gMaps.map,
+    suppressMarkers: true
   });
+
+  gMaps.createMarker(place, "../images/place-pin.svg");
 
   var request = {
       origin: gMaps.userLocation,
@@ -339,23 +334,29 @@ gMaps.findRoute = function(place) {
       travelMode: google.maps.TravelMode.DRIVING
     };
 
-  directionsService.route(request, function(response, status) {
+  gMaps.directionsService.route(request, function(response, status) {
     if (status === google.maps.DirectionsStatus.OK) {
-      directionsDisplay.setDirections(response);
-      var route = response.routes[0];  
+
+      gMaps.directionsDisplay.setDirections(response);
+      var route = response.routes[0].legs[0].steps; 
+      var duration = 0;
+      for (i = 0; i < route.length; i++) { 
+          // console.log(route[i].instructions);
+          console.log(route[i]);
+
+          $("#routeSteps").append("<div class='routeStep'>"+route[i].instructions+"</div>" + 
+            "<div class='duration'>"+ route[i].duration.text +"</div>");
+
+        duration += route[i].duration.value;
+        // console.log(route[i].duration, route[i].duration.value, duration);
+      }
+      duration = Math.round(duration/60);
+
+      $("#routeSteps").append("<div class='totalDuration'>Total estimated time: "+ duration +" minutes.</div>")
+      console.log("TOTAL "+ duration +" seconds");
     }  
   });
 }
-
-
-
-// duration
-
-
-
-
-
-
 
 gMaps.removePlaceMarkers = function() {
   for (var i = 0; i < gMaps.placeMarkers.length; i++ ) {
@@ -384,7 +385,6 @@ gMaps.initializeRepeater = function() {
 }
 
 gMaps.init = function(){
-  console.log("gmaps init");
   this.getUserLocation();
   this.initializeRepeater();
   this.addAutoCompleteToRepeater();
