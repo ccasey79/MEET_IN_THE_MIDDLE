@@ -349,14 +349,12 @@ gMaps.findRoute = function(place) {
       var route = response.routes[0].legs[0].steps; 
       var duration = 0;
       for (i = 0; i < route.length; i++) { 
-          // console.log(route[i].instructions);
           console.log(route[i]);
 
           $("#routeSteps").append("<div class='routeStep'>"+route[i].instructions+"</div>" + 
             "<div class='duration'>"+ route[i].duration.text +"</div>");
 
         duration += route[i].duration.value;
-        // console.log(route[i].duration, route[i].duration.value, duration);
       }
       duration = Math.round(duration/60);
 
