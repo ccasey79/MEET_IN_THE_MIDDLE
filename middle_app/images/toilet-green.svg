@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10733 1319 62 62">
+  <defs>
+    <style>
+      .cls-1, .cls-4 {
+        fill: none;
+      }
+
+      .cls-1 {
+        stroke: #1b998b;
+        stroke-width: 1px;
+      }
+
+      .cls-2 {
+        fill: #1b998b;
+      }
+
+      .cls-3 {
+        stroke: none;
+      }
+    </style>
+  </defs>
+  <g id="group-118" transform="translate(-11118 432)">
+    <g id="group-116">
+      <g id="group-114">
+        <g id="group-113" transform="translate(-592 37)">
+          <g id="group-67" transform="translate(-2 17)">
+            <g id="group-24" transform="translate(867 272)">
+              <g id="group-20" transform="translate(94 -3)">
+                <g id="rectangle-6" class="cls-1" transform="translate(18 564)">
+                  <rect class="cls-3" width="62" height="62" rx="5"/>
+                  <rect class="cls-4" x="0.5" y="0.5" width="61" height="61" rx="4.5"/>
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+      <g id="group-115" transform="translate(390.97 894)">
+        <path id="path" class="cls-2" d="M72.389,234.984v11.3s-.313,1.641-1.836,1.548c0,0-1.075.14-1.523-1.36V233.483a4.835,4.835,0,0,1,4.344-4.643h9.091s3.361.094,4.21,4.361v13.132a1.48,1.48,0,0,1-1.432,1.5s-1.344.325-1.836-1.411V234.984h-.673v30.484a2.222,2.222,0,0,1-2.284,2.2s-1.7.235-2.239-2.063V247.74h-.672v17.822a2.292,2.292,0,0,1-2.419,2.117,2.214,2.214,0,0,1-2.06-2.211V234.984Z" transform="translate(-69 -219.88)"/>
+        <ellipse id="ellipse" class="cls-2" cx="3.846" cy="4.027" rx="3.846" ry="4.027" transform="translate(5.05 0)"/>
+        <path id="path-2" data-name="path" class="cls-2" d="M578.454,246.518l3.431-12.121a5.04,5.04,0,0,1,3.985-3.067h6.143a4.585,4.585,0,0,1,3.819,2.951l3.542,11.921c.546,1.837-2.473,3-3.044,1.042l-3.044-10.419h-.664l4.981,18h-4.649v13.542c0,2.028-3.542,2.319-3.542.174V254.882h-.94v13.484c0,2.224-3.6,2.188-3.6-.116V255h-4.76l5.092-18.114-.664-.058-2.933,10.3a1.59,1.59,0,0,1-1.944,1.076C579.037,248.07,578.232,247.3,578.454,246.518Z" transform="translate(-550.322 -222.233)"/>
+        <ellipse id="ellipse-2" data-name="ellipse" class="cls-2" cx="3.653" cy="3.82" rx="3.653" ry="3.82" transform="translate(34.995 0.355)"/>
+        <path id="path-3" data-name="path" class="cls-2" d="M465.494,113.343c0,.373-.216.675-.484.675H461.7c-.267,0-.484-.3-.484-.675V66.895c0-.373.216-.675.484-.675h3.306c.267,0,.484.3.484.675Z" transform="translate(-439.582 -66.22)"/>
+      </g>
+    </g>
+  </g>
+</svg>
