@@ -273,7 +273,6 @@ gMaps.createPlaceMarker = function(place){
 
         $('#place-directions').click(function(){
           gMaps.findRoute(place.geometry.location);
-          gMaps.removePlaceMarkers();
           $('#placesModal').modal('hide');
           $('#transport-icons').fadeIn(600);
         });      
