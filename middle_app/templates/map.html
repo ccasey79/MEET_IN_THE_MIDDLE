@@ -1,7 +1,7 @@
 <div id="map">
   
 </div>
-
+<div class="info"></div>
 <div class="container form-wrapper">
  
     <form class="row">
@@ -22,19 +22,73 @@
       </div>
     </form>
     <div class="col-md-6 col-md-offset-3">
-      <h3>Activity</h3>
+      <div class="form-group">
+        <button id="findCenterButton" class="red-btn go form-control">Find the middle</button>
+      </div>
+
+
+      <h3>Choose Activity</h3>
       <div id="drink"></div>
       <div id="food"></div>
       <div id="coffee"></div>
       <div id="shop"></div>
-      <div id="strippers"></div>
-      <div id="condom"></div>
-      <div id="casino"></div>
-      <div id="ghost"></div>
-      <div class="form-group">
-        <button id="findCenterButton" class="red-btn go form-control">Find the middle</button>
+      <a class="" role="button" data-toggle="collapse" href="#collapsed-activities" aria-expanded="false" aria-controls="collapseExample" id="more-activities">
+        More...
+      </a>
+      <div class="collapse" id="collapsed-activities">
+        <div class="well">
+          <div id="strippers"></div>
+          <div id="condom"></div>
+          <div id="casino"></div>
+          <div id="ghost"></div>
+        </div>
+      </div>
+ 
+     
+    </div>
+</div>
+
+<!-- Places Info Modal -->
+<div id="placesModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"></h4>
+      </div>
+      <div class="modal-body">
+        <p>Some text in the modal.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Directions</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
+
+  </div>
+</div>
+
+<!-- No Places Info Modal -->
+<div id="noPlacesModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Oops...</h4>
+      </div>
+      <div class="modal-body">
+        <p>Sorry, there are no places within a 250 meter radius of the middle.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
 </div>
 
 <script type="text/javascript" src="js/gmaps.js"></script>
