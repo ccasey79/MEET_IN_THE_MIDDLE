@@ -341,6 +341,10 @@ gMaps.findRoute = function(place) {
   gMaps.directionsService.route(request, function(response, status) {
     if (status === google.maps.DirectionsStatus.OK) {
 
+      $(".routeStep").remove();
+      $(".duration").remove();
+      $(".totalDuration").remove();
+
       gMaps.directionsDisplay.setDirections(response);
       var route = response.routes[0].legs[0].steps; 
       var duration = 0;
@@ -357,7 +361,6 @@ gMaps.findRoute = function(place) {
       duration = Math.round(duration/60);
 
       $("#routeSteps").append("<div class='totalDuration'>Total estimated time: "+ duration +" minutes.</div>")
-      console.log("TOTAL "+ duration +" seconds");
     }  
   });
 }
