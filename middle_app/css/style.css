@@ -25,6 +25,11 @@ body {
   margin: 0;
   padding: 0;
  }
+
+/* img#map {
+  max-height: 20px;
+ }*/
+ 
  
  img.img-responsive {
   margin-bottom: 1em;

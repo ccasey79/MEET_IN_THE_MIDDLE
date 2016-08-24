@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-12079 1217.783 38.082 89.727" width="30" height="90">
+  <defs>
+    <style>
+      .cls-1, .cls-4 {
+        fill: none;
+      }
+
+      .cls-1 {
+        stroke: #1b998b;
+        stroke-width: 1px;
+      }
+
+      .cls-2 {
+        fill: #1b998b;
+      }
+
+      .cls-3 {
+        fill: #fff;
+      }
+
+      .cls-4 {
+        stroke: #fff;
+        stroke-width: 2px;
+      }
+
+      .cls-5 {
+        fill: #2d3047;
+        font-size: 6px;
+        font-family: Roboto-Black, Roboto;
+        font-weight: 800;
+      }
+    </style>
+  </defs>
+  <g id="group-120" transform="translate(-13383 397)">
+    <ellipse id="ellipse" class="cls-1" cx="18.541" cy="5.141" rx="18.541" ry="5.141" transform="translate(1304.5 899.729)"/>
+    <ellipse id="ellipse-2" data-name="ellipse" class="cls-1" cx="15.814" cy="4.386" rx="15.814" ry="4.386" transform="translate(1306.5 900.483)"/>
+    <ellipse id="ellipse-3" data-name="ellipse" class="cls-1" cx="15.814" cy="4.386" rx="15.814" ry="4.386" transform="translate(1306.5 900.483)"/>
+    <ellipse id="ellipse-4" data-name="ellipse" class="cls-1" cx="15.814" cy="4.386" rx="15.814" ry="4.386" transform="translate(1306.5 900.483)"/>
+    <ellipse id="ellipse-5" data-name="ellipse" class="cls-1" cx="12.099" cy="3.356" rx="12.099" ry="3.356" transform="translate(1310.5 901.513)"/>
+    <path id="path" class="cls-2" d="M224.282,44.861c0,10.24-8.3,66.513-18.541,66.513S187.2,55.088,187.2,44.861a18.541,18.541,0,1,1,37.082,0Z" transform="translate(1116.8 794.463)"/>
+    <circle id="ellipse-6" data-name="ellipse" class="cls-3" cx="14.042" cy="14.042" r="14.042" transform="translate(1309 825.29)"/>
+    <circle id="ellipse-7" data-name="ellipse" class="cls-4" cx="14.042" cy="14.042" r="14.042" transform="translate(1308.5 825.29)"/>
+    <text id="MIDDLE" class="cls-5" transform="translate(1312 841.434)"><tspan x="0" y="0">MIDDLE</tspan></text>
+  </g>
+</svg>

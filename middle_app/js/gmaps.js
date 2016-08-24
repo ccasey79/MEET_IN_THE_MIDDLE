@@ -30,7 +30,7 @@ gMaps.getUserLocation = function(){
   navigator.geolocation.getCurrentPosition(function(position){
 
     var location = {lat: position.coords.latitude, lng: position.coords.longitude };
-    var marker = gMaps.createMarker(location, "../images/you-pin.png");
+    var marker = gMaps.createMarker(location, "../images/you-pin.svg");
 
     gMaps.map.panTo(marker.getPosition());
     gMaps.map.setZoom(16);
@@ -76,13 +76,13 @@ gMaps.addAutoCompleteToLocation = function() {
 
 gMaps.addAutoCompleteToRepeater = function (){
   var idx = $(".form-group.repeater:last-child").index();
-  gMaps.createAutoCompleteWithMarker(".form-group.repeater:last-child .autocomplete", "../images/wally-pin.png", idx);
+  gMaps.createAutoCompleteWithMarker(".form-group.repeater:last-child .autocomplete", "../images/wally-pin.svg", idx);
 }
 
 //Find the Center
 
 gMaps.centralMarker = new google.maps.Marker({
-  icon: "http://maps.google.com/mapfiles/ms/icons/yellow-dot.png",
+  icon: "../images/middle-pin.svg",
   animation: google.maps.Animation.DROP,
   map: gMaps.map
 });
@@ -223,11 +223,11 @@ gMaps.createPlaceMarker = function(place){
 
 
   var image = {
-     url: place.icon,
-     size: new google.maps.Size(71, 71),
+     url: "../images/place-pin.svg",
+     // size: new google.maps.Size(71, 71),
      origin: new google.maps.Point(0, 0),
      anchor: new google.maps.Point(17, 34),
-     scaledSize: new google.maps.Size(25, 25)
+     // scaledSize: new google.maps.Size(25, 25)
    };
 
   var placeMarker = gMaps.createMarker(place.geometry.location, image);
