@@ -110,7 +110,7 @@ input.form-control:focus{
 }
 
 .fa {
-  color: #E84855;
+  color: #E84855 !important;
 } 
 
 /*.form-wrapper{
@@ -174,11 +174,6 @@ button.remove {
   padding-right: 2em;
   padding-left: 2em;
   color: #fff;
-}
-
-.gm-style-iw {
-  height: 500px;
-  width: 300px;
 }
 
 #drink{

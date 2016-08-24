@@ -128,35 +128,35 @@ gMaps.initEventHandlers = function() {
   });
 
 
-  document.getElementById("drink").addEventListener("click", function(){
+  $("#drink").click(function(){
     gMaps.removePlaceMarkers();
     gMaps.placeType = ["bar"];
     gMaps.placeQuery = "";
     gMaps.getPlaces();
   });
 
-  document.getElementById("food").addEventListener("click", function(){
+  $("#food").click(function(){
     gMaps.removePlaceMarkers();
     gMaps.placeType = ["restaurant"];
     gMaps.placeQuery = "";
     gMaps.getPlaces();
   });
 
-  document.getElementById("coffee").addEventListener("click", function(){
+  $("#coffee").click(function(){
     gMaps.removePlaceMarkers();
     gMaps.placeType = ["cafe"];
     gMaps.placeQuery = "";
     gMaps.getPlaces();
   });
 
-  document.getElementById("casino").addEventListener("click", function(){
+  $("#casino").click(function(){
     gMaps.removePlaceMarkers();
     gMaps.placeType = [];
     gMaps.placeQuery = "casino";
     gMaps.getPlaces();
   });
 
-  document.getElementById("ghost").addEventListener("click", function(){
+  $("#ghost").click(function(){
     console.log("clicked")
     gMaps.removePlaceMarkers();
     gMaps.placeType = [];
@@ -164,7 +164,7 @@ gMaps.initEventHandlers = function() {
     gMaps.getPlaces();
   });
 
-  document.getElementById("condom").addEventListener("click", function(){
+  $("#condom").click(function(){
     gMaps.removePlaceMarkers();
     gMaps.placeType = [];
     gMaps.placeQuery = "sti clinic";
@@ -172,21 +172,21 @@ gMaps.initEventHandlers = function() {
     gMaps.getPlaces();
   });
 
-  document.getElementById("strippers").addEventListener("click", function(){
+  $("#strippers").click(function(){
     gMaps.removePlaceMarkers();
     gMaps.placeType = [];
     gMaps.placeQuery = "strip club";
     gMaps.getPlaces();
   });
 
-  document.getElementById("condom").addEventListener("click", function(){
+  $("#condom").click(function(){
     gMaps.removePlaceMarkers();
     gMaps.placeType = [];
     gMaps.placeQuery = "sti clinic";
     gMaps.getPlaces();
   });
 
-  document.getElementById("shop").addEventListener("click", function(){
+  $("#shop").click(function(){
     gMaps.removePlaceMarkers();
     gMaps.placeType = ["electronics_store","department_store", "jewelry_store", "book_store", "clothing_store", "shopping_mall", "shoe_store"];
     gMaps.placeQuery = "";
@@ -205,7 +205,7 @@ gMaps.getPlaces = function() {
 
   var request = {
     location: gMaps.centerPoint,
-    radius: 500,
+    radius: 250,
     types: gMaps.placeType,
     keyword: gMaps.placeQuery
   }
@@ -217,10 +217,13 @@ gMaps.createPlaceMarkers = function (results, status) {
   if (status == google.maps.places.PlacesServiceStatus.OK) {
     results.forEach(gMaps.createPlaceMarker);
   }
+
+  if(results.length === 0){
+    $('#noPlacesModal').modal('show');
+  }
 }
 
 gMaps.createPlaceMarker = function(place){
-
 
   var image = {
      url: place.icon,
@@ -236,8 +239,6 @@ gMaps.createPlaceMarker = function(place){
 
   google.maps.event.addListener(placeMarker, "click", function(){
     console.log(this);
-
-    // infowindow = new google.maps.InfoWindow();
     
     placeDetails = gMaps.service.getDetails({placeId: place.place_id}, function(place, status){
 
@@ -251,8 +252,8 @@ gMaps.createPlaceMarker = function(place){
 
         stars = gMaps.starRating(place.rating);
 
-        $('.modal-title').html(place.name);
-        $('.modal-body').html(
+        $('#placesModal').find('.modal-title').html(place.name);
+        $('#placesModal').find('.modal-body').html(
             photo +
             '<p>' + place.adr_address + '</p>'+
             '<p><a href="tel:'+place.formatted_phone_number+'">'+
@@ -261,7 +262,7 @@ gMaps.createPlaceMarker = function(place){
             stars
           );
 
-        $('#myModal').modal('show');
+        $('#placesModal').modal('show');
 
         console.log("this is the place detail", place);
       }
@@ -271,7 +272,6 @@ gMaps.createPlaceMarker = function(place){
 }
 
 // Star Rating
-
 gMaps.starRating = function(rating) {
      var fullStar = "<i class='fa fa-star'></i>";
      var halfStar = "<i class='fa fa-star-half-o'></i>";
@@ -330,9 +330,7 @@ gMaps.init = function(){
   this.getUserLocation();
   this.initializeRepeater();
   this.addAutoCompleteToRepeater();
-  this.addAutoCompleteToLocation();
-  
-  // this.autocompleteInput();
+  this.addAutoCompleteToLocation();  
   this.initEventHandlers();
 }
 
