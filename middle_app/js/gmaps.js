@@ -6,6 +6,8 @@ gMaps.markers = {};
 gMaps.placeMarkers =[];
 gMaps.userLocation;
 
+$("#transport-icons").hide();
+
 gMaps.map = new google.maps.Map(document.getElementById("map"), { 
   center: { lat: 51.5080072, lng: -0.1019284 },
   zoom: 14,
@@ -27,6 +29,8 @@ gMaps.createMarker = function(location, icon) {
   return marker;  
 }
 
+gMaps.userLocation; 
+
 gMaps.getUserLocation = function(){
 
   navigator.geolocation.getCurrentPosition(function(position){
@@ -41,6 +45,7 @@ gMaps.getUserLocation = function(){
     gMaps.map.panTo(marker.getPosition());
     gMaps.map.setZoom(16);
     gMaps.markers[0] = marker;
+    gMaps.userLocation = location;
 
   });
 }
@@ -163,7 +168,6 @@ gMaps.initEventHandlers = function() {
   });
 
   $("#ghost").click(function(){
-    console.log("clicked")
     gMaps.removePlaceMarkers();
     gMaps.placeType = [];
     gMaps.placeQuery = "funeral";
@@ -174,7 +178,6 @@ gMaps.initEventHandlers = function() {
     gMaps.removePlaceMarkers();
     gMaps.placeType = [];
     gMaps.placeQuery = "sti clinic";
-    console.log(gMaps.placeQuery);
     gMaps.getPlaces();
   });
 
@@ -244,8 +247,7 @@ gMaps.createPlaceMarker = function(place){
   gMaps.placeMarkers.push(placeMarker);
 
   google.maps.event.addListener(placeMarker, "click", function(){
-    console.log(this);
-    
+
     placeDetails = gMaps.service.getDetails({placeId: place.place_id}, function(place, status){
 
       if (status === google.maps.places.PlacesServiceStatus.OK) {
@@ -270,11 +272,10 @@ gMaps.createPlaceMarker = function(place){
 
         $('#placesModal').modal('show');
 
-        console.log("this is the place detail", place);
         $('#place-directions').click(function(){
           gMaps.findRoute(place.geometry.location);
-          gMaps.removePlaceMarkers();
           $('#placesModal').modal('hide');
+          $('#transport-icons').fadeIn(600);
         });      
       }
     });
@@ -313,11 +314,23 @@ gMaps.starRating = function(rating) {
 // Directions route
 
 
+gMaps.directionsService;
+gMaps.directionsDisplay;
+
 gMaps.findRoute = function(place) {
-  var directionsService = new google.maps.DirectionsService();
-  var directionsDisplay = new google.maps.DirectionsRenderer({
-    map: gMaps.map
+
+  if (gMaps.directionsDisplay != null) {  
+        gMaps.directionsDisplay.setMap(null);
+        gMaps.directionsDisplay = null;
+      }
+
+  gMaps.directionsService = new google.maps.DirectionsService();
+  gMaps.directionsDisplay = new google.maps.DirectionsRenderer({
+    map: gMaps.map,
+    suppressMarkers: true
   });
+
+  gMaps.createMarker(place, "../images/place-pin.svg");
 
   var request = {
       origin: gMaps.userLocation,
@@ -325,23 +338,29 @@ gMaps.findRoute = function(place) {
       travelMode: google.maps.TravelMode.DRIVING
     };
 
-  directionsService.route(request, function(response, status) {
+  gMaps.directionsService.route(request, function(response, status) {
     if (status === google.maps.DirectionsStatus.OK) {
-      directionsDisplay.setDirections(response);
-      var route = response.routes[0];  
+
+      gMaps.directionsDisplay.setDirections(response);
+      var route = response.routes[0].legs[0].steps; 
+      var duration = 0;
+      for (i = 0; i < route.length; i++) { 
+          // console.log(route[i].instructions);
+          console.log(route[i]);
+
+          $("#routeSteps").append("<div class='routeStep'>"+route[i].instructions+"</div>" + 
+            "<div class='duration'>"+ route[i].duration.text +"</div>");
+
+        duration += route[i].duration.value;
+        // console.log(route[i].duration, route[i].duration.value, duration);
+      }
+      duration = Math.round(duration/60);
+
+      $("#routeSteps").append("<div class='totalDuration'>Total estimated time: "+ duration +" minutes.</div>")
+      console.log("TOTAL "+ duration +" seconds");
     }  
   });
 }
-
-
-
-// duration
-
-
-
-
-
-
 
 gMaps.removePlaceMarkers = function() {
   for (var i = 0; i < gMaps.placeMarkers.length; i++ ) {
@@ -369,8 +388,9 @@ gMaps.initializeRepeater = function() {
   });
 }
 
+
+
 gMaps.init = function(){
-  console.log("gmaps init");
   this.getUserLocation();
   this.initializeRepeater();
   this.addAutoCompleteToRepeater();

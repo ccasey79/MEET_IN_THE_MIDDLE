@@ -74,6 +74,12 @@ a.red-btn {
   background-color: #E84855;
   display: inline-block;
   text-align: center;
+  font-weight: 700;
+  border-radius: 5px;
+  text-decoration: none;
+}
+a.red-btn:hover{
+  background-color: #1B998B;
 }
 
 
@@ -85,9 +91,12 @@ a.blue-btn {
   color: #fff;
   background-color: #2D3047;
   display: inline-block;
+  font-weight: 700;
+  border-radius: 5px;
+  text-decoration: none;
 }
-a.blue-button:hover {
-  background-color:#E84855;
+a.blue-btn:hover {
+  background-color:#1B998B;
 }
 h2.text-center {
   text-transform: uppercase;
@@ -275,13 +284,63 @@ button.remove {
   background: url(../images/ghost-green.png);
 }
 
+#underground{
+  margin: 0 1em 0 0;
+  padding: 0;
+  height: 62px;
+  width: 62px;
+  background: url(../images/underground.svg);
+  display: inline-block;
+}
+#underground:hover {
+  background: url(../images/underground-green.svg);
+}
+
+#walk{
+  margin: 0 1em 0 0;
+  padding: 0;
+  height: 62px;
+  width: 62px;
+  background: url(../images/walk.svg);
+  display: inline-block;
+}
+#walk:hover {
+  background: url(../images/walk-green.svg);
+}
+
+#car{
+  margin: 0 1em 0 0;
+  padding: 0;
+  height: 62px;
+  width: 62px;
+  background: url(../images/car.svg);
+  display: inline-block;
+}
+#car:hover {
+  background: url(../images/car-green.svg);
+}
+
+#bike{
+  margin: 0 1em 0 0;
+  padding: 0;
+  height: 62px;
+  width: 62px;
+  background: url(../images/bike.svg);
+  display: inline-block;
+}
+#bike:hover {
+  background: url(../images/bike-green.svg);
+}
+
 .well {
   background-color: transparent;
   border: none;
   padding: 0;
   -webkit-box-shadow: inset 0 0px 0px rgba(0,0,0,0);
   box-shadow: inset 0 0px 0px rgba(0,0,0,0);
+
 }
+
 
 #more-activities {
   color: #E84855;
@@ -295,3 +354,27 @@ max-height: 200px;
 max-width: 200px;
 border: solid 5px #E84855;
 }
+
+.form-group.repeater {
+ 
+  -webkit-animation: fadeinout 4s linear 1 forwards;
+  animation: fadeinout 4s linear 1 forwards;
+
+}
+
+
+@-webkit-keyframes fadeinout {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  
+}
+@keyframes fadeinout {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  
+}
+
+#transport-icons {
+  
+}
+
