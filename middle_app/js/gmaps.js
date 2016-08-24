@@ -8,6 +8,7 @@ gMaps.placeMarkers =[];
 gMaps.map = new google.maps.Map(document.getElementById("map"), { 
   center: { lat: 51.5080072, lng: -0.1019284 },
   zoom: 14,
+  scrollwheel: false,
   styles: [{"elementType":"geometry","stylers":[{"hue":"#ff4400"},{"saturation":-68},{"lightness":-4},{"gamma":0.72}]},{"featureType":"road","elementType":"labels.icon"},{"featureType":"landscape.man_made","elementType":"geometry","stylers":[{"hue":"#0077ff"},{"gamma":3.1}]},{"featureType":"water","stylers":[{"hue":"#00ccff"},{"gamma":0.44},{"saturation":-33}]},{"featureType":"poi.park","stylers":[{"hue":"#44ff00"},{"saturation":-23}]},{"featureType":"water","elementType":"labels.text.fill","stylers":[{"hue":"#007fff"},{"gamma":0.77},{"saturation":65},{"lightness":99}]},{"featureType":"water","elementType":"labels.text.stroke","stylers":[{"gamma":0.11},{"weight":5.6},{"saturation":99},{"hue":"#0091ff"},{"lightness":-86}]},{"featureType":"transit.line","elementType":"geometry","stylers":[{"lightness":-48},{"hue":"#ff5e00"},{"gamma":1.2},{"saturation":-23}]},{"featureType":"transit","elementType":"labels.text.stroke","stylers":[{"saturation":-64},{"hue":"#ff9100"},{"lightness":16},{"gamma":0.47},{"weight":2.7}]}]
 });
 
@@ -206,29 +207,34 @@ gMaps.initEventHandlers = function() {
 
   document.getElementById("casino").addEventListener("click", function(){
     gMaps.removePlaceMarkers();
-    gMaps.placeType = ["casino"];
-    gMaps.placeQuery = "";
+    gMaps.placeType = [];
+    gMaps.placeQuery = "casino";
+    console.log(gMaps.placeQuery);
+    console.log(gMaps.placeType);
     gMaps.getPlaces();
   });
 
   document.getElementById("ghost").addEventListener("click", function(){
     gMaps.removePlaceMarkers();
-    gMaps.placeType = ["funeral_home", "cemetery"];
-    gMaps.placeQuery = "";
+    gMaps.placeType = [];
+    gMaps.placeQuery = "funeral";
     gMaps.getPlaces();
   });
 
-  document.getElementById("casino").addEventListener("click", function(){
+  document.getElementById("condom").addEventListener("click", function(){
     gMaps.removePlaceMarkers();
-    gMaps.placeType = ["casino"];
-    gMaps.placeQuery = "";
+    gMaps.placeType = [];
+    gMaps.placeQuery = "sti clinic";
+    console.log(gMaps.placeQuery);
     gMaps.getPlaces();
   });
 
   document.getElementById("strippers").addEventListener("click", function(){
     gMaps.removePlaceMarkers();
-    gMaps.placeType = ["strip club"];
-    gMaps.placeQuery = "";
+    gMaps.placeType = [];
+    gMaps.placeQuery = "strip club";
+    console.log(gMaps.placeQuery);
+    console.log(gMaps.placeType);
     gMaps.getPlaces();
   });
 
@@ -251,12 +257,12 @@ gMaps.getPlaces = function() {
 
   var request = {
     location: gMaps.centerPoint,
-    radius: 250,
+    radius: 500,
     types: gMaps.placeType,
-    query: gMaps.placeQuery
+    keyword: gMaps.placeQuery
   }
 
-  this.service.textSearch(request, this.createPlaceMarkers);
+  this.service.radarSearch(request, this.createPlaceMarkers);
 }
 
 gMaps.createPlaceMarkers = function (results, status) {
@@ -281,25 +287,38 @@ gMaps.createPlaceMarker = function(place){
   gMaps.placeMarkers.push(placeMarker);
 
   google.maps.event.addListener(placeMarker, "click", function(){
+    console.log(this);
 
-    infowindow = new google.maps.InfoWindow();
+    // infowindow = new google.maps.InfoWindow();
     
-    var photo = "";
-
-    if(!!place.photos) {
-      photo = "<img src='" + place.photos[0].getUrl({ 'maxWidth': 150, 'maxHeight': 150 }) +"'>";
-    }
-
     placeDetails = gMaps.service.getDetails({placeId: place.place_id}, function(place, status){
+
       if (status === google.maps.places.PlacesServiceStatus.OK) {
         console.log(place);
-        infowindow.setContent(place.name + "<br>" + place.adr_address + "<br>" + place.formatted_phone_number+ "<br>" + photo);
+
+        var photo = "";
+
+        if(!!place.photos) {
+          photo = "<img class='placePhoto' src='" + place.photos[0].getUrl({ 'maxWidth': 150, 'maxHeight': 150 }) +"'>";
+        }
+
+        $('.modal-title').html(place.name);
+        $('.modal-body').html(
+            photo +
+            '<p>' + place.adr_address + '</p>'+
+            '<p><a href="tel:'+place.formatted_phone_number+'">'+
+            place.formatted_phone_number +
+            '</a></p>'
+          );
+
+        $('#myModal').modal('show');
+        // infowindow.setContent(place.name + "<br>" + place.adr_address + "<br>" + place.formatted_phone_number+ "<br>" + photo);
 
         console.log("this is the place detail", place);
       }
     });
 
-    infowindow.open(gMaps.map, this);
+    // infowindow.open(gMaps.map, this);
 
   });
 }
