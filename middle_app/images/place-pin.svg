@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-11855 1239.797 19.801 68.203" width="10" height="90">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #2d3047;
+        opacity: 0.448;
+      }
+
+      .cls-2 {
+        fill: none;
+        stroke: #1b998b;
+        stroke-width: 2px;
+      }
+
+      .cls-3 {
+        fill: #e84855;
+      }
+    </style>
+  </defs>
+  <g id="group-19" transform="translate(-12197 619.797)">
+    <ellipse id="ellipse-5" class="cls-1" cx="5.5" cy="1.1" rx="5.5" ry="1.1" transform="translate(346.4 686.003)"/>
+    <line id="line-3" class="cls-2" y2="57.203" transform="translate(351.9 629.9)"/>
+    <circle id="ellipse-4" class="cls-3" cx="9.9" cy="9.9" r="9.9" transform="translate(342 620)"/>
+  </g>
+</svg>

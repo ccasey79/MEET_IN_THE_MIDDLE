@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "aws-sdk": "^2.5.3",
     "bcrypt": "^0.8.7",
     "body-parser": "^1.15.2",
     "cors": "^2.7.1",
@@ -16,6 +17,9 @@
     "jsonwebtoken": "^7.1.9",
     "mongoose": "^4.5.9",
     "morgan": "^1.7.0",
-    "node-bcrypt": "0.0.1"
+    "multer": "^1.2.0",
+    "multer-s3": "^2.3.2",
+    "node-bcrypt": "0.0.1",
+    "uuid": "^2.0.2"
   }
 }
