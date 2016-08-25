@@ -97,7 +97,8 @@ gMaps.addAutoCompleteToRepeater = function (){
 gMaps.centralMarker = new google.maps.Marker({
   icon: "../images/middle-pin.svg",
   animation: google.maps.Animation.DROP,
-  map: gMaps.map
+  map: gMaps.map,
+  draggable: true
 });
 
 
@@ -211,8 +212,10 @@ gMaps.placeQuery = "";
 
 gMaps.getPlaces = function() {
 
+  var centerMarkerLocation = gMaps.centralMarker.getPosition();
+
   var request = {
-    location: gMaps.centerPoint,
+    location: centerMarkerLocation,
     radius: 250,
     types: gMaps.placeType,
     keyword: gMaps.placeQuery
@@ -345,21 +348,23 @@ gMaps.findRoute = function(place) {
       $(".totalDuration").remove();
 
       gMaps.directionsDisplay.setDirections(response);
-      var route = response.routes[0].legs[0].steps; 
-      var duration = 0;
+      var route = response.routes[0].legs[0].steps;  
+      var totalDistance = response.routes[0].legs[0].distance.text
+      var totalDuration = response.routes[0].legs[0].duration.text
+
+      console.log(totalDistance+" "+totalDuration);
+
       for (i = 0; i < route.length; i++) { 
-          console.log(route[i]);
 
           $("#routeSteps").append("<div class='routeStep'>"+route[i].instructions+"</div>" + 
-            "<div class='duration'>"+ route[i].duration.text +"<hr></div>").slideDown(800);
-
-        duration += route[i].duration.value;
+            "<div class='duration'>" + route[i].distance.text + ", " + route[i].duration.text  + "<hr></div>").slideDown(800);
       }
-      duration = Math.round(duration/60);
 
-      $("#routeSteps").append("<div class='totalDuration'>Total estimated time: "+ duration +" minutes.<hr></div>").slideDown(800);
+      $("#routeSteps").append("<div class='totalDuration'>Journey Total: "+ 
+        totalDistance + ", "+
+        totalDuration + "<hr></div>").slideDown(800);
+
     }  
-  
   });
 }
 
