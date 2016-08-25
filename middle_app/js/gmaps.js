@@ -235,7 +235,7 @@ gMaps.initEventHandlers = function() {
     gMaps.placeQuery = "";
     gMaps.getPlaces();
     $(".activity-select").removeClass("active");
-    $("#drink").addClass("active");
+    $("#shop").addClass("active");
   });
 
   $("#underground").click(function(){
