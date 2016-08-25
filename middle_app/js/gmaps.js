@@ -97,7 +97,8 @@ gMaps.addAutoCompleteToRepeater = function (){
 gMaps.centralMarker = new google.maps.Marker({
   icon: "../images/middle-pin.svg",
   animation: google.maps.Animation.DROP,
-  map: gMaps.map
+  map: gMaps.map,
+  draggable: true
 });
 
 
@@ -211,8 +212,10 @@ gMaps.placeQuery = "";
 
 gMaps.getPlaces = function() {
 
+  var centerMarkerLocation = gMaps.centralMarker.getPosition();
+
   var request = {
-    location: gMaps.centerPoint,
+    location: centerMarkerLocation,
     radius: 250,
     types: gMaps.placeType,
     keyword: gMaps.placeQuery
