@@ -70,7 +70,7 @@ MiddleApp.handleForm = function() {
       window.localStorage.setItem("token", data.token);
     }
 
-    MiddleApp.getUsers();
+    MiddleApp.getTemplate('map');
 
   }).fail(MiddleApp.handleFormErrors);
 
@@ -123,7 +123,6 @@ MiddleApp.updateUI = function() {
 MiddleApp.logout = function(){
   event.preventDefault();
   window.localStorage.clear();
-  MiddleApp.getUsers();
   MiddleApp.updateUI();
 }
 

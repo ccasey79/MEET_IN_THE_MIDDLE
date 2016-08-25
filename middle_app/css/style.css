@@ -77,6 +77,7 @@ a.red-btn {
   font-weight: 700;
   border-radius: 5px;
   text-decoration: none;
+  text-transform: uppercase;
 }
 a.red-btn:hover{
   background-color: #1B998B;
@@ -311,7 +312,7 @@ button.remove {
   background: url(../images/underground.svg);
   display: inline-block;
 }
-#underground:hover {
+#underground:hover, #underground.active {
   background: url(../images/underground-green.svg);
 }
 
@@ -323,7 +324,7 @@ button.remove {
   background: url(../images/walk.svg);
   display: inline-block;
 }
-#walk:hover {
+#walk:hover, #walk.active {
   background: url(../images/walk-green.svg);
 }
 
@@ -335,7 +336,7 @@ button.remove {
   background: url(../images/car.svg);
   display: inline-block;
 }
-#car:hover {
+#car:hover, #car.active {
   background: url(../images/car-green.svg);
 }
 
@@ -347,7 +348,7 @@ button.remove {
   background: url(../images/bike.svg);
   display: inline-block;
 }
-#bike:hover {
+#bike:hover, #bike.active {
   background: url(../images/bike-green.svg);
 }
 
@@ -375,22 +376,18 @@ border: solid 5px #E84855;
 }
 
 .form-group.repeater {
- 
   -webkit-animation: fadeinout 4s linear 1 forwards;
   animation: fadeinout 4s linear 1 forwards;
-
 }
 
 
 @-webkit-keyframes fadeinout {
   0% { opacity: 0; }
-  50% { opacity: 1; }
-  
+  50% { opacity: 1; } 
 }
 @keyframes fadeinout {
   0% { opacity: 0; }
-  50% { opacity: 1; }
-  
+  50% { opacity: 1; } 
 }
 
 #transport-icons {
@@ -399,6 +396,7 @@ border: solid 5px #E84855;
 
 #routeSteps {
   color: #1B998B;
+  display: none;
 }
 .duration {
   font-size: 0.8em;
@@ -417,3 +415,4 @@ button#place-directions.btn.red-btn.btn-primary {
 button#place-directions.btn.red-btn.btn-primary:hover {
   background-color: #1B998B;
 }
+

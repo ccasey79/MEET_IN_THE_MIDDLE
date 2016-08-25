@@ -5,6 +5,8 @@ var gMaps = gMaps || {};
 gMaps.markers = {};
 gMaps.placeMarkers =[];
 gMaps.userLocation;
+gMaps.placeLocation;
+gMaps.travelMode = google.maps.TravelMode.TRANSIT;
 
 $("#transport-icons").hide();
 $("#collapsed-activities").hide();
@@ -97,7 +99,8 @@ gMaps.addAutoCompleteToRepeater = function (){
 gMaps.centralMarker = new google.maps.Marker({
   icon: "../images/middle-pin.svg",
   animation: google.maps.Animation.DROP,
-  map: gMaps.map
+  map: gMaps.map,
+  draggable: true
 });
 
 
@@ -158,68 +161,92 @@ gMaps.initEventHandlers = function() {
     $('#collapsed-activities').fadeIn(600);
   });
 
+  $(".activity").click(function(){
+     gMaps.removePlaceMarkers(); 
+     gMaps.map.setZoom(16);
+     gMaps.map.setCenter(gMaps.centralMarker.getPosition()); 
+  });
 
   $("#drink").click(function(){
-    gMaps.removePlaceMarkers();
     gMaps.placeType = ["bar"];
     gMaps.placeQuery = "";
     gMaps.getPlaces();
   });
 
   $("#food").click(function(){
-    gMaps.removePlaceMarkers();
     gMaps.placeType = ["restaurant"];
     gMaps.placeQuery = "";
     gMaps.getPlaces();
   });
 
   $("#coffee").click(function(){
-    gMaps.removePlaceMarkers();
     gMaps.placeType = ["cafe"];
     gMaps.placeQuery = "";
     gMaps.getPlaces();
   });
 
   $("#casino").click(function(){
-    gMaps.removePlaceMarkers();
     gMaps.placeType = [];
     gMaps.placeQuery = "casino";
     gMaps.getPlaces();
   });
 
-  $("#ghost").click(function(){
-    gMaps.removePlaceMarkers();
+  $("#toilets").click(function(){
     gMaps.placeType = [];
-    gMaps.placeQuery = "funeral";
+    gMaps.placeQuery = "public toilets";
     gMaps.getPlaces();
   });
 
   $("#condom").click(function(){
-    gMaps.removePlaceMarkers();
     gMaps.placeType = [];
     gMaps.placeQuery = "sti clinic";
     gMaps.getPlaces();
   });
 
   $("#strippers").click(function(){
-    gMaps.removePlaceMarkers();
     gMaps.placeType = [];
     gMaps.placeQuery = "strip club";
     gMaps.getPlaces();
   });
 
   $("#condom").click(function(){
-    gMaps.removePlaceMarkers();
     gMaps.placeType = [];
     gMaps.placeQuery = "sti clinic";
     gMaps.getPlaces();
   });
 
   $("#shop").click(function(){
-    gMaps.removePlaceMarkers();
     gMaps.placeType = ["electronics_store","department_store", "jewelry_store", "book_store", "clothing_store", "shopping_mall", "shoe_store"];
     gMaps.placeQuery = "";
     gMaps.getPlaces();
+  });
+
+  $("#underground").click(function(){
+    gMaps.travelMode = google.maps.TravelMode.TRANSIT;
+    gMaps.findRoute(gMaps.placeLocation);
+    $(".transport-select").removeClass("active");
+    $("#underground").addClass("active");
+  });
+
+  $("#walk").click(function(){
+    gMaps.travelMode = google.maps.TravelMode.WALKING;
+    gMaps.findRoute(gMaps.placeLocation);
+    $(".transport-select").removeClass("active");
+    $("#walk").addClass("active");
+  });
+
+  $("#bike").click(function(){
+    gMaps.travelMode = google.maps.TravelMode.BICYCLING;
+    gMaps.findRoute(gMaps.placeLocation);
+    $(".transport-select").removeClass("active");
+    $("#bike").addClass("active");
+  });
+
+  $("#car").click(function(){
+    gMaps.travelMode = google.maps.TravelMode.DRIVING;
+    gMaps.findRoute(gMaps.placeLocation);
+    $(".transport-select").removeClass("active");
+    $("#car").addClass("active");
   });
 
 }
@@ -232,8 +259,10 @@ gMaps.placeQuery = "";
 
 gMaps.getPlaces = function() {
 
+  var centerMarkerLocation = gMaps.centralMarker.getPosition();
+
   var request = {
-    location: gMaps.centerPoint,
+    location: centerMarkerLocation,
     radius: 250,
     types: gMaps.placeType,
     keyword: gMaps.placeQuery
@@ -339,6 +368,8 @@ gMaps.directionsDisplay;
 
 gMaps.findRoute = function(place) {
 
+gMaps.placeLocation = place;
+
   if (gMaps.directionsDisplay != null) {  
         gMaps.directionsDisplay.setMap(null);
         gMaps.directionsDisplay = null;
@@ -355,7 +386,7 @@ gMaps.findRoute = function(place) {
   var request = {
       origin: gMaps.userLocation,
       destination: place,
-      travelMode: google.maps.TravelMode.DRIVING
+      travelMode: gMaps.travelMode
     };
 
   gMaps.directionsService.route(request, function(response, status) {
@@ -366,19 +397,22 @@ gMaps.findRoute = function(place) {
       $(".totalDuration").remove();
 
       gMaps.directionsDisplay.setDirections(response);
-      var route = response.routes[0].legs[0].steps; 
-      var duration = 0;
+      var route = response.routes[0].legs[0].steps;  
+      var totalDistance = response.routes[0].legs[0].distance.text
+      var totalDuration = response.routes[0].legs[0].duration.text
+
+      console.log(totalDistance+" "+totalDuration);
+
       for (i = 0; i < route.length; i++) { 
-          console.log(route[i]);
 
           $("#routeSteps").append("<div class='routeStep'>"+route[i].instructions+"</div>" + 
-            "<div class='duration'>"+ route[i].duration.text +"<hr></div>");
-
-        duration += route[i].duration.value;
+            "<div class='duration'>" + route[i].distance.text + ", " + route[i].duration.text  + "<hr></div>").slideDown(800);
       }
-      duration = Math.round(duration/60);
 
-      $("#routeSteps").append("<div class='totalDuration'>Total estimated time: "+ duration +" minutes.<hr></div>");
+      $("#routeSteps").append("<div class='totalDuration'>Journey Total: "+ 
+        totalDistance + ", "+
+        totalDuration + "<hr></div>").slideDown(800);
+
     }  
   });
 }
