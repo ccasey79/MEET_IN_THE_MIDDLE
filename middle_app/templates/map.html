@@ -5,7 +5,7 @@
 <div class="container form-wrapper">
  
     <form class="row">
-      <div class="col-md-8 col-md-offset-2 people">
+      <div class="col-md-8 col-md-offset-2">
         <i class="fa fa-refresh fa-lg pull-right" data-template="map" aria-hidden="true"></i>
         <div class="" id="transport-icons">
           <div class="well">
@@ -39,7 +39,7 @@
             
         </div>
         </div>
-        <div>
+        <div class="people">
           <div class="form-group">
             <h3>Your Location</h3>
             <input id="pac-input" class="controls form-control" type="text" placeholder="Enter a location">
@@ -103,7 +103,7 @@
         <h3 class="modal-title">Oops...</h3>
       </div>
       <div class="modal-body">
-        <p>Sorry, there are no places within a 250 meter radius of the middle.</p>
+        <p>Sorry, there are no places within a 250 meter radius of the middle. Try dragging the middle marker to another location, and search again.</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-red btn-default" data-dismiss="modal">Close</button>

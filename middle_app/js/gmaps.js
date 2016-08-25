@@ -7,6 +7,7 @@ gMaps.placeMarkers =[];
 gMaps.userLocation;
 gMaps.placeLocation;
 gMaps.travelMode = google.maps.TravelMode.TRANSIT;
+gMaps.userFormattedAddress;
 
 $("#transport-icons").hide();
 $("#collapsed-activities").hide();
@@ -35,29 +36,36 @@ gMaps.createMarker = function(location, icon) {
   return marker;  
 }
 
+gMaps.geocoder = new google.maps.Geocoder();
+
 gMaps.getUserLocation = function(){
 
   navigator.geolocation.getCurrentPosition(function(position){
 
-    var location = {lat: position.coords.latitude, lng: position.coords.longitude };
+    gMaps.userLocation = { lat: position.coords.latitude, lng: position.coords.longitude };
 
-    gMaps.userLocation = location;
+    var marker = gMaps.createMarker(gMaps.userLocation, "../images/you-pin.svg");
 
-    var marker = gMaps.createMarker(location, "../images/you-pin.svg");
-
-
-    gMaps.map.panTo(marker.getPosition());
+    gMaps.map.panTo(gMaps.userLocation);
     gMaps.map.setZoom(16);
     gMaps.markers[0] = marker;
-    gMaps.userLocation = location;
 
+    gMaps.updateUserLocationInput();
+  });
+}
 
+gMaps.updateUserLocationInput = function() {
+  gMaps.geocoder.geocode({'latLng': gMaps.userLocation}, function (results, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+      $("#pac-input").val(results[0].formatted_address);
+    }
   });
 }
 
 //AutoComplete
 gMaps.createAutoCompleteWithMarker = function(selector, icon, idx) {
   $input = $(selector);
+  console.log("AutoComplete",selector, $input[0]);
   var autocomplete = new google.maps.places.Autocomplete($input[0]);
 
   autocomplete.addListener('place_changed', function() {
@@ -246,6 +254,7 @@ gMaps.initEventHandlers = function() {
     gMaps.findRoute(gMaps.placeLocation);
     $(".transport-select").removeClass("active");
     $("#underground").addClass("active");
+    $('#remove-directions').attr('class','fa fa-minus-square');
   });
 
   $("#walk").click(function(){
@@ -253,6 +262,7 @@ gMaps.initEventHandlers = function() {
     gMaps.findRoute(gMaps.placeLocation);
     $(".transport-select").removeClass("active");
     $("#walk").addClass("active");
+    $('#remove-directions').attr('class','fa fa-minus-square');
   });
 
   $("#bike").click(function(){
@@ -260,6 +270,7 @@ gMaps.initEventHandlers = function() {
     gMaps.findRoute(gMaps.placeLocation);
     $(".transport-select").removeClass("active");
     $("#bike").addClass("active");
+    $('#remove-directions').attr('class','fa fa-minus-square');
   });
 
   $("#car").click(function(){
@@ -267,6 +278,7 @@ gMaps.initEventHandlers = function() {
     gMaps.findRoute(gMaps.placeLocation);
     $(".transport-select").removeClass("active");
     $("#car").addClass("active");
+    $('#remove-directions').attr('class','fa fa-minus-square');
   });
 
   $('#remove-directions').click(function(){
@@ -406,8 +418,6 @@ gMaps.placeLocation = place;
     suppressMarkers: true
   });
 
-  gMaps.createMarker(place, "../images/place-pin.svg");
-
   var request = {
       origin: gMaps.userLocation,
       destination: place,
@@ -473,7 +483,6 @@ gMaps.initializeRepeater = function() {
     }
   });
 }
-
 
 gMaps.init = function(){
   this.getUserLocation();
