@@ -376,22 +376,18 @@ border: solid 5px #E84855;
 }
 
 .form-group.repeater {
- 
   -webkit-animation: fadeinout 4s linear 1 forwards;
   animation: fadeinout 4s linear 1 forwards;
-
 }
 
 
 @-webkit-keyframes fadeinout {
   0% { opacity: 0; }
-  50% { opacity: 1; }
-  
+  50% { opacity: 1; } 
 }
 @keyframes fadeinout {
   0% { opacity: 0; }
-  50% { opacity: 1; }
-  
+  50% { opacity: 1; } 
 }
 
 #transport-icons {
@@ -400,6 +396,7 @@ border: solid 5px #E84855;
 
 #routeSteps {
   color: #1B998B;
+  display: none;
 }
 .duration {
   font-size: 0.8em;
@@ -418,3 +415,4 @@ button#place-directions.btn.red-btn.btn-primary {
 button#place-directions.btn.red-btn.btn-primary:hover {
   background-color: #1B998B;
 }
+

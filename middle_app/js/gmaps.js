@@ -351,14 +351,15 @@ gMaps.findRoute = function(place) {
           console.log(route[i]);
 
           $("#routeSteps").append("<div class='routeStep'>"+route[i].instructions+"</div>" + 
-            "<div class='duration'>"+ route[i].duration.text +"<hr></div>");
+            "<div class='duration'>"+ route[i].duration.text +"<hr></div>").slideDown(800);
 
         duration += route[i].duration.value;
       }
       duration = Math.round(duration/60);
 
-      $("#routeSteps").append("<div class='totalDuration'>Total estimated time: "+ duration +" minutes.<hr></div>");
+      $("#routeSteps").append("<div class='totalDuration'>Total estimated time: "+ duration +" minutes.<hr></div>").slideDown(800);
     }  
+  
   });
 }
 
