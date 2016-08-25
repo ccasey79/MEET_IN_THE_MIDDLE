@@ -108,7 +108,7 @@ h2.text-center {
 
 input.form-control {
   min-width: 400px;
-  max-width: 600px;
+  max-width: 830px;
   border: none;
   border-bottom: 1px solid #1B998B;
   -webkit-box-shadow: none;
@@ -428,3 +428,15 @@ button#place-directions.btn.red-btn.btn-primary:hover {
   background-color: #1B998B;
 }
 
+i.fa.fa-refresh {
+margin-top: 1em;
+}
+
+i.fa-refresh:hover {
+  cursor: pointer;
+
+}
+i#remove-directions:hover {
+  cursor: pointer;
+
+}

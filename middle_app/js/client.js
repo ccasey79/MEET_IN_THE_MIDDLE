@@ -140,6 +140,7 @@ MiddleApp.initEventHandlers = function() {
   this.$main.on("submit", "form", this.handleForm);
   this.$main.on("click", "a.edit-user", this.getEditForm);
   this.$main.on("click", "a.delete-user", this.deleteUser);
+  this.$main.on("click", "i.fa-refresh", this.loadPage);
   this.$main.on("focus", "form input", function(){
     $(this).parents(".form-group").removeClass("has-error");
   });
