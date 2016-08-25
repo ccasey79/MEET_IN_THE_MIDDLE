@@ -78,6 +78,7 @@ a.red-btn {
   border-radius: 5px;
   text-decoration: none;
   text-transform: uppercase;
+  margin:2em;
 }
 a.red-btn:hover{
   background-color: #1B998B;
@@ -95,6 +96,7 @@ a.blue-btn {
   font-weight: 700;
   border-radius: 5px;
   text-decoration: none;
+  margin: 2em;
 }
 a.blue-btn:hover {
   background-color:#1B998B;
@@ -107,8 +109,9 @@ h2.text-center {
 }
 
 input.form-control {
-  min-width: 400px;
-  max-width: 830px;
+/*  min-width: 400px;
+  max-width: 830px;*/
+  width: 100%;
   border: none;
   border-bottom: 1px solid #1B998B;
   -webkit-box-shadow: none;
@@ -128,12 +131,10 @@ input.form-control:focus{
   color: #E84855 !important;
 } 
 
-/*.form-wrapper{
-    margin: 0 auto;
-    width:50%
-
-}*/
-
+button.center-btn {
+  display:block !important;
+  margin: 4em auto !important;
+}
 button.red-btn {
   padding-top: 1em;
   padding-bottom: 1em;
@@ -145,8 +146,9 @@ button.red-btn {
   text-align: center;
   border: none;
   text-transform: uppercase;
-  margin-top: 6em;
+  margin: 2em;
 }
+
 button.red-btn:hover{
   background-color: #2D3047;
 }
@@ -174,7 +176,7 @@ button.blue-btn {
   border: none;
   text-transform: uppercase;
   font-weight: 700;
-  margin-top: 0em;
+  margin:2em;
 }
 
 button.blue-btn:hover {
