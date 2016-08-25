@@ -78,7 +78,7 @@ a.red-btn {
   border-radius: 5px;
   text-decoration: none;
   text-transform: uppercase;
-  margin:2em;
+  margin:2em 1em;
 }
 a.red-btn:hover{
   background-color: #1B998B;
@@ -96,7 +96,7 @@ a.blue-btn {
   font-weight: 700;
   border-radius: 5px;
   text-decoration: none;
-  margin: 2em;
+  margin:2em 1em;
 }
 a.blue-btn:hover {
   background-color:#1B998B;
@@ -146,7 +146,7 @@ button.red-btn {
   text-align: center;
   border: none;
   text-transform: uppercase;
-  margin: 2em;
+  margin:2em 1em;
 }
 
 button.red-btn:hover{
@@ -176,7 +176,7 @@ button.blue-btn {
   border: none;
   text-transform: uppercase;
   font-weight: 700;
-  margin:2em;
+  margin:2em 1em;
 }
 
 button.blue-btn:hover {
@@ -423,7 +423,6 @@ border: solid 5px #E84855;
 }
 button#place-directions.btn.red-btn.btn-primary {
   font-weight: 700;
-  margin-top: 0em;
 }
 
 button#place-directions.btn.red-btn.btn-primary:hover {
@@ -456,3 +455,6 @@ i#remove-directions:hover {
   font-weight: normal;
 }
 
+.modal-close-btn {
+  margin-top: 0 !important;
+}
