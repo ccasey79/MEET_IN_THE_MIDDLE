@@ -271,6 +271,7 @@ gMaps.initEventHandlers = function() {
 
   $('#remove-directions').click(function(){
       $('#routeSteps').toggle(1000);
+      $('#remove-directions').toggleClass('fa-minus-square fa-plus-square');
   });
  
 }
