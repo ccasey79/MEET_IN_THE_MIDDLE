@@ -312,7 +312,7 @@ button.remove {
   background: url(../images/underground.svg);
   display: inline-block;
 }
-#underground:hover {
+#underground:hover, #underground.active {
   background: url(../images/underground-green.svg);
 }
 
@@ -324,7 +324,7 @@ button.remove {
   background: url(../images/walk.svg);
   display: inline-block;
 }
-#walk:hover {
+#walk:hover, #walk.active {
   background: url(../images/walk-green.svg);
 }
 
@@ -336,7 +336,7 @@ button.remove {
   background: url(../images/car.svg);
   display: inline-block;
 }
-#car:hover {
+#car:hover, #car.active {
   background: url(../images/car-green.svg);
 }
 
@@ -348,7 +348,7 @@ button.remove {
   background: url(../images/bike.svg);
   display: inline-block;
 }
-#bike:hover {
+#bike:hover, #bike.active {
   background: url(../images/bike-green.svg);
 }
 

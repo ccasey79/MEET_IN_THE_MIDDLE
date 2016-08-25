@@ -5,6 +5,8 @@ var gMaps = gMaps || {};
 gMaps.markers = {};
 gMaps.placeMarkers =[];
 gMaps.userLocation;
+gMaps.placeLocation;
+gMaps.travelMode = google.maps.TravelMode.TRANSIT;
 
 $("#transport-icons").hide();
 $("#collapsed-activities").hide();
@@ -202,6 +204,34 @@ gMaps.initEventHandlers = function() {
     gMaps.getPlaces();
   });
 
+  $("#underground").click(function(){
+    gMaps.travelMode = google.maps.TravelMode.TRANSIT;
+    gMaps.findRoute(gMaps.placeLocation);
+    $(".transport-select").removeClass("active");
+    $("#underground").addClass("active");
+  });
+
+  $("#walk").click(function(){
+    gMaps.travelMode = google.maps.TravelMode.WALKING;
+    gMaps.findRoute(gMaps.placeLocation);
+    $(".transport-select").removeClass("active");
+    $("#walk").addClass("active");
+  });
+
+  $("#bike").click(function(){
+    gMaps.travelMode = google.maps.TravelMode.BICYCLING;
+    gMaps.findRoute(gMaps.placeLocation);
+    $(".transport-select").removeClass("active");
+    $("#bike").addClass("active");
+  });
+
+  $("#car").click(function(){
+    gMaps.travelMode = google.maps.TravelMode.DRIVING;
+    gMaps.findRoute(gMaps.placeLocation);
+    $(".transport-select").removeClass("active");
+    $("#car").addClass("active");
+  });
+
 }
 
 
@@ -321,6 +351,8 @@ gMaps.directionsDisplay;
 
 gMaps.findRoute = function(place) {
 
+gMaps.placeLocation = place;
+
   if (gMaps.directionsDisplay != null) {  
         gMaps.directionsDisplay.setMap(null);
         gMaps.directionsDisplay = null;
@@ -337,7 +369,7 @@ gMaps.findRoute = function(place) {
   var request = {
       origin: gMaps.userLocation,
       destination: place,
-      travelMode: google.maps.TravelMode.DRIVING
+      travelMode: gMaps.travelMode
     };
 
   gMaps.directionsService.route(request, function(response, status) {
