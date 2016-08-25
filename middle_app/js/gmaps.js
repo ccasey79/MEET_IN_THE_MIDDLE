@@ -33,8 +33,6 @@ gMaps.createMarker = function(location, icon) {
   return marker;  
 }
 
-gMaps.userLocation; 
-
 gMaps.getUserLocation = function(){
 
   navigator.geolocation.getCurrentPosition(function(position){
@@ -65,6 +63,7 @@ gMaps.createAutoCompleteWithMarker = function(selector, icon, idx) {
     if(gMaps.markers[idx]) {
       var marker = gMaps.markers[idx];
       marker.setPosition(place.geometry.location);
+      gMaps.userLocation = gMaps.markers[0].getPosition();
     } else {
       var marker = gMaps.createMarker(place.geometry.location, icon);
       gMaps.markers[idx] = marker;
@@ -135,7 +134,6 @@ gMaps.getCenterOfMarkers = function() {
     gMaps.map.panTo(gMaps.centralMarker.getPosition());
     gMaps.map.setZoom(18);
   });
-
 }
 
 gMaps.initEventHandlers = function() {
