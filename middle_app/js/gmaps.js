@@ -141,65 +141,61 @@ gMaps.initEventHandlers = function() {
     $('#collapsed-activities').fadeIn(600);
   });
 
+  $(".activity").click(function(){
+     gMaps.removePlaceMarkers(); 
+     gMaps.map.setZoom(16);
+     gMaps.map.setCenter(gMaps.centralMarker.getPosition()); 
+  });
 
   $("#drink").click(function(){
-    gMaps.removePlaceMarkers();
     gMaps.placeType = ["bar"];
     gMaps.placeQuery = "";
     gMaps.getPlaces();
   });
 
   $("#food").click(function(){
-    gMaps.removePlaceMarkers();
     gMaps.placeType = ["restaurant"];
     gMaps.placeQuery = "";
     gMaps.getPlaces();
   });
 
   $("#coffee").click(function(){
-    gMaps.removePlaceMarkers();
     gMaps.placeType = ["cafe"];
     gMaps.placeQuery = "";
     gMaps.getPlaces();
   });
 
   $("#casino").click(function(){
-    gMaps.removePlaceMarkers();
     gMaps.placeType = [];
     gMaps.placeQuery = "casino";
     gMaps.getPlaces();
   });
 
-  $("#ghost").click(function(){
-    gMaps.removePlaceMarkers();
+  $("#toilets").click(function(){
     gMaps.placeType = [];
-    gMaps.placeQuery = "funeral";
+    gMaps.placeQuery = "public toilets";
     gMaps.getPlaces();
   });
 
   $("#condom").click(function(){
-    gMaps.removePlaceMarkers();
     gMaps.placeType = [];
     gMaps.placeQuery = "sti clinic";
     gMaps.getPlaces();
   });
 
   $("#strippers").click(function(){
-    gMaps.removePlaceMarkers();
     gMaps.placeType = [];
     gMaps.placeQuery = "strip club";
     gMaps.getPlaces();
   });
 
   $("#condom").click(function(){
-    gMaps.removePlaceMarkers();
     gMaps.placeType = [];
     gMaps.placeQuery = "sti clinic";
     gMaps.getPlaces();
   });
 
   $("#shop").click(function(){
-    gMaps.removePlaceMarkers();
     gMaps.placeType = ["electronics_store","department_store", "jewelry_store", "book_store", "clothing_store", "shopping_mall", "shoe_store"];
     gMaps.placeQuery = "";
     gMaps.getPlaces();
