@@ -135,6 +135,23 @@ gMaps.getCenterOfMarkers = function() {
     gMaps.map.panTo(gMaps.centralMarker.getPosition());
     gMaps.map.setZoom(18);
   });
+  gMaps.createCircle();
+}
+
+gMaps.createCircle = function() {
+
+  var CircleRadius = new google.maps.Circle( { 
+    center: gMaps.centralMarker.getPosition(),
+    radius: 300,
+    strokeColor:"#2D3407",
+    strokeOpacity:0,
+    strokeWeight:1,
+    fillColor:"#2D3407",
+    fillOpacity:0.1,
+    map:gMaps.map
+  });
+
+  CircleRadius.bindTo('center', gMaps.centralMarker, 'position');
 
 }
 
