@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10497 1282 62 62">
+  <defs>
+    <style>
+      .cls-1, .cls-4 {
+        fill: none;
+      }
+
+      .cls-1 {
+        stroke: #e84855;
+        stroke-width: 1px;
+      }
+
+      .cls-2 {
+        fill: #e84855;
+      }
+
+      .cls-3 {
+        stroke: none;
+      }
+    </style>
+  </defs>
+  <g id="group-25" transform="translate(-10520 721)">
+    <g id="rectangle-6" class="cls-1" transform="translate(23 561)">
+      <rect class="cls-3" width="62" height="62" rx="5"/>
+      <rect class="cls-4" x="0.5" y="0.5" width="61" height="61" rx="4.5"/>
+    </g>
+    <path id="martini" class="cls-2" d="M13.256,12.117,8.7,7.558H38.327l-4.558,4.558M21.233,25.791V39.466H9.837v4.558h27.35V39.466h-11.4V25.791L44.024,7.558V3H3V7.558Z" transform="translate(30.238 568.238)"/>
+  </g>
+</svg>
