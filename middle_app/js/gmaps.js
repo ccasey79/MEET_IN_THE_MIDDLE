@@ -267,6 +267,9 @@ gMaps.initEventHandlers = function() {
     $("#car").addClass("active");
   });
 
+  $('#remove-directions').click(function(){
+      $('#routeSteps').toggle(1000);
+  }); 
 }
 
 
@@ -460,6 +463,10 @@ gMaps.initializeRepeater = function() {
     }
   });
 }
+
+
+    
+
 
 
 
