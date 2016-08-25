@@ -428,6 +428,7 @@ button#place-directions.btn.red-btn.btn-primary:hover {
   background-color: #1B998B;
 }
 
+<<<<<<< HEAD
 i.fa.fa-refresh {
 margin-top: 1em;
 }
@@ -440,3 +441,11 @@ i#remove-directions:hover {
   cursor: pointer;
 
 }
+=======
+.file-upload {
+  display: block;
+  text-align: left;
+  padding-left:10px;
+  font-weight: normal;
+}
+>>>>>>> development

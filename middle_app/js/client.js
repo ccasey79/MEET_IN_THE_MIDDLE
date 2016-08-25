@@ -16,26 +16,13 @@ MiddleApp.getTemplate = function(template, data){
   });
 }
 
-MiddleApp.getUsers = function() {
-  if(event) event.preventDefault();
-
-  return $.ajax({
-    method: "GET",
-    url: MiddleApp.API_URL+"/users"
-  }).done(function(data) {
-    MiddleApp.getTemplate("users-index", { users: data })
-  });
-}
-
-
 MiddleApp.getUser = function(){
   event.preventDefault();
 
-  var id = $(this).data('id');
-
   return $.ajax({
     method: "GET",
-    url: MiddleApp.API_URL+"/users/"+id
+    url: MiddleApp.API_URL+"/me",
+    beforeSend: MiddleApp.setRequestHeader
   }).done(function(data){
     MiddleApp.getTemplate("users-show", { user: data });
   });
@@ -89,9 +76,12 @@ MiddleApp.handleFormErrors = function(jqXHR) {
 
 MiddleApp.getEditForm = function() {
   event.preventDefault();
-  var id = $(this).data("id");
 
-  return $.get(MiddleApp.API_URL+"/users/"+id).done(function(data){
+  return $.ajax({
+    method: "GET",
+    url: MiddleApp.API_URL+"/me",
+    beforeSend: MiddleApp.setRequestHeader
+  }).done(function(data){
     MiddleApp.getTemplate("users-edit", { user: data });
   });
 }
@@ -99,13 +89,14 @@ MiddleApp.getEditForm = function() {
 MiddleApp.deleteUser = function() {
   event.preventDefault();
 
-  var id = $(this).data("id");
-
   return $.ajax({
     method: "DELETE",
-    url: MiddleApp.API_URL+"/users/"+id,
+    url: MiddleApp.API_URL+"/me",
     beforeSend: MiddleApp.setRequestHeader
-  }).done(MiddleApp.getUsers);
+  }).done(function(){
+    MiddleApp.getTemplate('map');
+    MiddleApp.logout();
+  });
 }
 
 MiddleApp.updateUI = function() {
@@ -129,13 +120,12 @@ MiddleApp.logout = function(){
 
 MiddleApp.initEventHandlers = function() {
   MiddleApp.$main = $("main");
-  $("a#nav-users").on('click', MiddleApp.getUsers);
   this.$main.on("click", ".show-user", this.getUser);
 
   //any link in the main or outwith the main with a data-template attr, load on-click. 
   $('[data-template]').on('click', this.loadPage);
   this.$main.on('click', '[data-template]', this.loadPage);
-
+  $(".navbar-nav a.show-user").on("click", this.getUser);
   $(".navbar-nav a.logout").on("click", this.logout);
   this.$main.on("submit", "form", this.handleForm);
   this.$main.on("click", "a.edit-user", this.getEditForm);
@@ -150,7 +140,6 @@ MiddleApp.init = function() {
   this.initEventHandlers();
   this.updateUI();
   this.getTemplate("home");
-  // this.getUsers();
 }.bind(MiddleApp);
 
 $(MiddleApp.init);

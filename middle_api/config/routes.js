@@ -2,7 +2,6 @@ var router = require('express').Router();
 
 var usersController = require('../controllers/users');
 var authController = require("../controllers/authentications");
-var friendsController = require('../controllers/friends');
 var aws = require('aws-sdk');
 var multer = require('multer');
 var multerS3 = require('multer-s3');
@@ -46,14 +45,20 @@ function secureRoute(req, res, next){
   });
 }
 
+router.route('/me')
+  .get(secureRoute, usersController.show)
+  .put(secureRoute, upload.single('profile_pic'), usersController.update)
+  .patch(secureRoute, upload.single('profile_pic'), usersController.update)
+  .delete(secureRoute, usersController.delete)
+
 router.route('/users')
   .get(usersController.index);
 
-router.route("/users/:id")
-  .get(usersController.show)
-  .post(usersController.update)
-  .patch(usersController.update)
-  .delete(usersController.delete);
+// router.route("/users/:id")
+//   .get(usersController.show)
+//   .post(secureRoute, usersController.update)
+//   .patch(secureRoute, usersController.update)
+//   .delete(secureRoute, usersController.delete);
 
 router.post("/register", upload.single('profile_pic'), authController.register);
 router.post("/login", authController.login);
