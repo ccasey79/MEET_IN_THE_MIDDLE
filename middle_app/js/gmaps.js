@@ -29,7 +29,7 @@ gMaps.createMarker = function(location, icon) {
     icon: icon,
     position: location
   });
-
+  console.log(marker);
   return marker;  
 }
 
@@ -458,7 +458,13 @@ gMaps.initializeRepeater = function() {
     }
 
     if($(this).hasClass('remove')) {
+      var index = $repeater.index();
+      if(gMaps.markers[index]) {
+        gMaps.markers[index].setMap(null);
+        delete gMaps.markers[index];
+      }
       $repeater.remove();
+      gMaps.getCenterOfMarkers();
     }
   });
 }
