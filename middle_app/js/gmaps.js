@@ -154,72 +154,54 @@ gMaps.initEventHandlers = function() {
     gMaps.placeType = ["bar"];
     gMaps.placeQuery = "";
     gMaps.getPlaces();
-    $(".activity-select").removeClass("active");
-    $("#drink").addClass("active");
   });
 
   $("#food").click(function(){
     gMaps.placeType = ["restaurant"];
     gMaps.placeQuery = "";
     gMaps.getPlaces();
-    $(".activity-select").removeClass("active");
-    $("#food").addClass("active");
   });
 
   $("#coffee").click(function(){
     gMaps.placeType = ["cafe"];
     gMaps.placeQuery = "";
     gMaps.getPlaces();
-    $(".activity-select").removeClass("active");
-    $("#coffee").addClass("active");
   });
 
   $("#casino").click(function(){
     gMaps.placeType = [];
     gMaps.placeQuery = "casino";
     gMaps.getPlaces();
-    $(".activity-select").removeClass("active");
-    $("#casino").addClass("active");
   });
 
   $("#toilets").click(function(){
     gMaps.placeType = [];
     gMaps.placeQuery = "public toilets";
     gMaps.getPlaces();
-    $(".activity-select").removeClass("active");
-    $("#toilets").addClass("active");
   });
 
   $("#condom").click(function(){
     gMaps.placeType = [];
     gMaps.placeQuery = "sti clinic";
     gMaps.getPlaces();
-    $(".activity-select").removeClass("active");
-    $("#condom").addClass("active");
   });
 
   $("#strippers").click(function(){
     gMaps.placeType = [];
     gMaps.placeQuery = "strip club";
     gMaps.getPlaces();
-    $(".activity-select").removeClass("active");
-    $("#strippers").addClass("active");
   });
 
   $("#condom").click(function(){
     gMaps.placeType = [];
     gMaps.placeQuery = "sti clinic";
     gMaps.getPlaces();
-    $(".activity-select").removeClass("active");
-    $("#condom").addClass("active");
   });
 
   $("#shop").click(function(){
     gMaps.placeType = ["electronics_store","department_store", "jewelry_store", "book_store", "clothing_store", "shopping_mall", "shoe_store"];
     gMaps.placeQuery = "";
     gMaps.getPlaces();
-    $(".activity-select").removeClass("active");
-    $("#shop").addClass("active");
   });
 
   $("#underground").click(function(){
