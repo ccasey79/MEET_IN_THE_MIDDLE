@@ -4,7 +4,9 @@ var secret = require("../config/tokens").secret;
 
 function register(req, res) {
 
-  req.body.profile_pic = req.file.key;
+  if(req.file) {
+    req.body.profile_pic = req.file.key;
+  }
 
   User.create(req.body, function(err, user){
     if(err) return res.status(400).json(err);
@@ -23,7 +25,12 @@ function login(req,res){
   User.findOne({ email: req.body.email }, function(err,user){
     if(err) res.send(500).json(err);
     if(!user || !user.validatePassword(req.body.password)){
-      return res.status(401).json({ message: "invalid credentials" });
+      return res.status(401).json({ errors:
+        {
+          email: "invalid credentials",
+          password: "invalid credentials"
+        }
+      });
     }
 
     var payload = {_id: user._id, username: user.username };
