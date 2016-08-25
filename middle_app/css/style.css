@@ -433,6 +433,11 @@ i.fa.fa-refresh {
 margin-top: 1em;
 }
 
+i.fa.fa-refresh:hover {
+  transition: 0.9s;
+  transform: rotate(360deg);
+}
+
 i.fa-refresh:hover {
   cursor: pointer;
 
