@@ -464,11 +464,6 @@ gMaps.initializeRepeater = function() {
 }
 
 
-    
-
-
-
-
 gMaps.init = function(){
   this.getUserLocation();
   this.initializeRepeater();

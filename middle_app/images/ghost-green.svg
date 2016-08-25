@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-9874 1282 62 62">
+  <defs>
+    <style>
+      .cls-1, .cls-4 {
+        fill: none;
+      }
+
+      .cls-1 {
+        stroke: #1b998b;
+        stroke-width: 1px;
+      }
+
+      .cls-2 {
+        fill: #1b998b;
+      }
+
+      .cls-3 {
+        stroke: none;
+      }
+    </style>
+  </defs>
+  <g id="group-64" transform="translate(-11111 449)">
+    <g id="group-22" transform="translate(947 272)">
+      <g id="group-20" transform="translate(272 -3)">
+        <g id="rectangle-6" class="cls-1" transform="translate(18 564)">
+          <rect class="cls-3" width="62" height="62" rx="5"/>
+          <rect class="cls-4" x="0.5" y="0.5" width="61" height="61" rx="4.5"/>
+        </g>
+      </g>
+    </g>
+    <path id="ghost" class="cls-2" d="M21.007,2A18.007,18.007,0,0,0,3,20.007V42.016l6-6,6,6,6-6,6,6,6-6,6,6V20.007A18.007,18.007,0,0,0,21.007,2M15,14a4,4,0,1,1-4,4,4,4,0,0,1,4-4m12,0a4,4,0,1,1-4,4A4,4,0,0,1,27.009,14Z" transform="translate(1247.241 842.379)"/>
+  </g>
+</svg>
