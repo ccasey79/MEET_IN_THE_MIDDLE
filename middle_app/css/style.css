@@ -77,6 +77,7 @@ a.red-btn {
   font-weight: 700;
   border-radius: 5px;
   text-decoration: none;
+  text-transform: uppercase;
 }
 a.red-btn:hover{
   background-color: #1B998B;
