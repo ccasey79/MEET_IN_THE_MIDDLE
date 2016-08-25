@@ -5,6 +5,7 @@ MiddleApp.API_URL = "http://localhost:3000/api";
 MiddleApp.setRequestHeader = function(jqXHR) {
   var token = window.localStorage.getItem("token");
   if(!!token) return jqXHR.setRequestHeader("Authorization", "Bearer "+token);
+  
 }
 
 MiddleApp.getTemplate = function(template, data){
