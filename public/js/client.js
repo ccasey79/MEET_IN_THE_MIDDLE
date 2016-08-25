@@ -1,6 +1,6 @@
 var MiddleApp = MiddleApp || {};
 
-MiddleApp.API_URL = "http://localhost:3000/api";
+MiddleApp.API_URL = "/api";
 
 MiddleApp.setRequestHeader = function(jqXHR) {
   var token = window.localStorage.getItem("token");
