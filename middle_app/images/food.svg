@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10408 1282 62 62">
+  <defs>
+    <style>
+      .cls-1, .cls-4 {
+        fill: none;
+      }
+
+      .cls-1 {
+        stroke: #e84855;
+        stroke-width: 1px;
+      }
+
+      .cls-2 {
+        fill: #e84855;
+      }
+
+      .cls-3 {
+        stroke: none;
+      }
+    </style>
+  </defs>
+  <g id="group-24" transform="translate(-10520 721)">
+    <g id="group-20" transform="translate(94 -3)">
+      <g id="rectangle-6" class="cls-1" transform="translate(18 564)">
+        <rect class="cls-3" width="62" height="62" rx="5"/>
+        <rect class="cls-4" x="0.5" y="0.5" width="61" height="61" rx="4.5"/>
+      </g>
+    </g>
+    <path id="food" class="cls-2" d="M34.831,46.774,31.183,15.159h5.423L33.858,4.119,38.089,3l3.04,12.159h9.509L46.99,46.774H34.831M9.3,22.455H21.455a7.3,7.3,0,0,1,7.3,7.3H2a7.3,7.3,0,0,1,7.3-7.3M28.751,39.478a7.3,7.3,0,0,1-7.3,7.3H9.3a7.3,7.3,0,0,1-7.3-7.3H28.751m-24.319-7.3H16.591l3.648,3.648,3.648-3.648h2.432a2.432,2.432,0,0,1,0,4.864H4.432a2.432,2.432,0,0,1,0-4.864Z" transform="translate(117 567)"/>
+  </g>
+</svg>
