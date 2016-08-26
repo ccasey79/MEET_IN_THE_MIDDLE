@@ -169,6 +169,7 @@ gMaps.initEventHandlers = function() {
   $('#findCenterButton').on("click", function(){
     gMaps.getCenterOfMarkers();
     $('#collapsed-activities').fadeIn(600);
+    $("html, body").animate({ scrollTop: 0 }, "slow");
   });
 
   $(".activity").click(function(){
@@ -430,6 +431,7 @@ gMaps.placeLocation = place;
       $(".routeStep").remove();
       $(".duration").remove();
       $(".totalDuration").remove();
+      $("html, body").animate({ scrollTop: 50 }, "slow");
 
       gMaps.directionsDisplay.setDirections(response);
       var route = response.routes[0].legs[0].steps;  
