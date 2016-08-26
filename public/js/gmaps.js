@@ -1,5 +1,3 @@
-console.log("JS Loaded");
-
 var gMaps = gMaps || {};
 
 gMaps.markers = {};
@@ -30,7 +28,6 @@ gMaps.createMarker = function(location, icon) {
     icon: icon,
     position: location
   });
-  console.log(marker);
   return marker;  
 }
 
@@ -61,7 +58,6 @@ gMaps.updateUserLocationInput = function() {
 //AutoComplete
 gMaps.createAutoCompleteWithMarker = function(selector, icon, idx) {
   $input = $(selector);
-  console.log("AutoComplete",selector, $input[0]);
   var autocomplete = new google.maps.places.Autocomplete($input[0]);
 
   autocomplete.addListener('place_changed', function() {
@@ -433,8 +429,6 @@ gMaps.placeLocation = place;
       var totalDistance = response.routes[0].legs[0].distance.text
       var totalDuration = response.routes[0].legs[0].duration.text
 
-      console.log(totalDistance+" "+totalDuration);
-
       for (i = 0; i < route.length; i++) { 
 
           $("#routeSteps").append("<div class='routeStep'>"+route[i].instructions+"</div>" + 
@@ -444,7 +438,6 @@ gMaps.placeLocation = place;
       $("#routeSteps").append("<div class='totalDuration'>Journey Total: "+ 
         totalDistance + ", "+
         totalDuration + "<hr></div>").slideDown(800);
-
     }  
   });
 }
