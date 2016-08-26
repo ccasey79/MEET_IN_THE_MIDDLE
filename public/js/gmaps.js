@@ -8,6 +8,8 @@ gMaps.userLocation;
 gMaps.placeLocation;
 gMaps.travelMode = google.maps.TravelMode.TRANSIT;
 gMaps.userFormattedAddress;
+gMaps.placeDetails;
+gMaps.geocoder = new google.maps.Geocoder();
 
 $("#transport-icons").hide();
 $("#collapsed-activities").hide();
@@ -19,11 +21,7 @@ gMaps.map = new google.maps.Map(document.getElementById("map"), {
   scrollwheel: false,
   styles: [{"elementType":"geometry","stylers":[{"hue":"#ff4400"},{"saturation":-68},{"lightness":-4},{"gamma":0.72}]},{"featureType":"road","elementType":"labels.icon"},{"featureType":"landscape.man_made","elementType":"geometry","stylers":[{"hue":"#0077ff"},{"gamma":3.1}]},{"featureType":"water","stylers":[{"hue":"#00ccff"},{"gamma":0.44},{"saturation":-33}]},{"featureType":"poi.park","stylers":[{"hue":"#44ff00"},{"saturation":-23}]},{"featureType":"water","elementType":"labels.text.fill","stylers":[{"hue":"#007fff"},{"gamma":0.77},{"saturation":65},{"lightness":99}]},{"featureType":"water","elementType":"labels.text.stroke","stylers":[{"gamma":0.11},{"weight":5.6},{"saturation":99},{"hue":"#0091ff"},{"lightness":-86}]},{"featureType":"transit.line","elementType":"geometry","stylers":[{"lightness":-48},{"hue":"#ff5e00"},{"gamma":1.2},{"saturation":-23}]},{"featureType":"transit","elementType":"labels.text.stroke","stylers":[{"saturation":-64},{"hue":"#ff9100"},{"lightness":16},{"gamma":0.47},{"weight":2.7}]}]
 
-  
-
 });
-
-gMaps.placeDetails;
 
 gMaps.createMarker = function(location, icon) {
   var marker = new google.maps.Marker({
@@ -35,8 +33,6 @@ gMaps.createMarker = function(location, icon) {
   console.log(marker);
   return marker;  
 }
-
-gMaps.geocoder = new google.maps.Geocoder();
 
 gMaps.getUserLocation = function(){
 
@@ -169,6 +165,7 @@ gMaps.initEventHandlers = function() {
   $('#findCenterButton').on("click", function(){
     gMaps.getCenterOfMarkers();
     $('#collapsed-activities').fadeIn(600);
+    $("html, body").animate({ scrollTop: 0 }, "slow");
   });
 
   $(".activity").click(function(){
@@ -399,7 +396,6 @@ gMaps.starRating = function(rating) {
 
 // Directions route
 
-
 gMaps.directionsService;
 gMaps.directionsDisplay;
 
@@ -430,6 +426,7 @@ gMaps.placeLocation = place;
       $(".routeStep").remove();
       $(".duration").remove();
       $(".totalDuration").remove();
+      $("html, body").animate({ scrollTop: 50 }, "slow");
 
       gMaps.directionsDisplay.setDirections(response);
       var route = response.routes[0].legs[0].steps;  
@@ -491,7 +488,6 @@ gMaps.init = function(){
   this.addAutoCompleteToLocation();  
   this.initEventHandlers();
 }
-
 
 gMaps.init();
 
