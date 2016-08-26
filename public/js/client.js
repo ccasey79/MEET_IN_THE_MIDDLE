@@ -13,6 +13,9 @@ MiddleApp.getTemplate = function(template, data){
     var html = _.template(templateHtml)(data);
     MiddleApp.$main.html(html);
     MiddleApp.updateUI();
+    $(".navbar-nav a").click(function(){
+        $('.navbar-collapse.in').collapse('hide');
+      });
   });
 }
 
@@ -121,8 +124,6 @@ MiddleApp.logout = function(){
 MiddleApp.initEventHandlers = function() {
   MiddleApp.$main = $("main");
   this.$main.on("click", ".show-user", this.getUser);
-
-  //any link in the main or outwith the main with a data-template attr, load on-click. 
   $('[data-template]').on('click', this.loadPage);
   this.$main.on('click', '[data-template]', this.loadPage);
   $(".navbar-nav a.show-user").on("click", this.getUser);
@@ -133,6 +134,7 @@ MiddleApp.initEventHandlers = function() {
   this.$main.on("click", "i.fa-refresh", this.loadPage);
   this.$main.on("focus", "form input", function(){
     $(this).parents(".form-group").removeClass("has-error");
+
   });
 };
 
@@ -142,4 +144,7 @@ MiddleApp.init = function() {
   this.getTemplate("home");
 }.bind(MiddleApp);
 
-$(MiddleApp.init);
+
+$( document ).ready(function() {
+  $(MiddleApp.init);
+});
