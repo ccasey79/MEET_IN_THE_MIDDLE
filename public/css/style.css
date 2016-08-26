@@ -458,3 +458,7 @@ i#remove-directions:hover {
 .modal-close-btn {
   margin-top: 0 !important;
 }
+
+.form-group {
+  font-size: 16px;
+}
