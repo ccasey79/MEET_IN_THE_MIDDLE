@@ -78,7 +78,7 @@ a.red-btn {
   border-radius: 5px;
   text-decoration: none;
   text-transform: uppercase;
-  margin:2em 1em;
+  margin:1.5em 1em;
 }
 a.red-btn:hover{
   background-color: #1B998B;
@@ -96,7 +96,7 @@ a.blue-btn {
   font-weight: 700;
   border-radius: 5px;
   text-decoration: none;
-  margin:2em 1em;
+  margin:1.5em 1em;
 }
 a.blue-btn:hover {
   background-color:#1B998B;
@@ -146,7 +146,7 @@ button.red-btn {
   text-align: center;
   border: none;
   text-transform: uppercase;
-  margin:2em 1em;
+  margin:1.5em 1em;
 }
 
 button.red-btn:hover{
@@ -176,7 +176,7 @@ button.blue-btn {
   border: none;
   text-transform: uppercase;
   font-weight: 700;
-  margin:2em 1em;
+  margin:1.5em 1em;
 }
 
 button.blue-btn:hover {
@@ -457,4 +457,8 @@ i#remove-directions:hover {
 
 .modal-close-btn {
   margin-top: 0 !important;
+}
+
+.btn-container {
+  text-align: center;
 }
